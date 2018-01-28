@@ -1,12 +1,14 @@
 // DBM Mod Installer - Electron JS Version
-
 'use strict';
 
 const {app, BrowserWindow, Menu, ipcMain} = require('electron')
     , path = require('path')
     , url = require('url')
-	
+    , ejse = require('ejs-electron')
+
+
 require('electron-unhandled')();
+
 
 const isDev = (process.env.NODE_ENV !== 'production')
 const isMac = (process.platform == 'darwin')
@@ -24,23 +26,26 @@ if (isDev) {
     console.log('Running in production');
 }
 
-
-var DBMMI = {
-    Window: { height: 650, width: 800 },
-    Actions: {}
-}
-
 // initialize the window
 let mainWindow;
 
-function createWindow(){
+
+var DBMMM = {
+    Window: { height: 650, width: 800 },
+    Checks: { isDev: isDev, isMac: isMac},
+    Actions: {}
+}
+
+ejse.data('DBMMM', DBMMM)
+
+app.on('ready', function(){
 
     // create browser window
-    mainWindow = new BrowserWindow({width: DBMMI.Window.width, height: DBMMI.Window.height, frame: false}) //,icon:__dirname+'img/dbmmods.png'})
+    mainWindow = new BrowserWindow({width: DBMMM.Window.width, height: DBMMM.Window.height, frame: false}) //,icon:__dirname+'img/dbmmods.png'})
 
     // load index.html
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: path.join(__dirname,'ejs' ,'index.ejs'),
         protocol: 'file',
         slashes: true
     }));
@@ -53,14 +58,11 @@ function createWindow(){
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
 
     Menu.setApplicationMenu(mainMenu);
-}
-app.on('ready', createWindow);
-
+});
 
 ipcMain.on('mod:install', function(e, item){
     mainWindow.webContents.send('mod:install', item)
 })
-
 
 // if its on a mac, close it properly
 app.on('window-all-closed', () => {

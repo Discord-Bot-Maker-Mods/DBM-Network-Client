@@ -1,46 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DBM Mod Manager</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>DBM Mod Manager</title>
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
 
-<body>
-    <div id="title-bar">
-        <div id="title">DBM Mod Manager</div>
-        <div id="title-bar-btns">
-            <button class="btn btn-outline-secondary btn-sm" id="min-btn">-</button>
-            <button class="btn btn-outline-secondary btn-sm" id="max-btn">+</button>
-            <button class="btn btn-outline-secondary btn-sm" id="close-btn">x</button>
-        </div>
-    </div>
-    <form>
-        <nav class="navbar navbar-light bg-faded">
-            <button class="btn">Add A Fake Mod</button>
-        </nav>
-    </form>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Section</th>
-                <th scope="col">Author</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody id="mods"></tbody>
-    </table>
-</body>
+    <body>
+        <% include main/titlebar.ejs %>     
+        <form>
+            <% include main/navbar.ejs %>   
+        </form>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody id="mods"></tbody>
+        </table>
+    </body>
 
-<script> window.$ = window.jQuery = require('../lib/jquery.min.js'); </script>
-<script src="../lib/bootstrap.js"></script>
-
-<script src="../js/titlebar.js"></script>
-<script src="../js/scripts.js"></script>
+    <script> window.$ = window.jQuery = require('../lib/jquery.min.js'); </script>
+    <script src="../lib/bootstrap.js"></script>
+    <script src="../js/titlebar.js"></script>
+    <script src="../js/scripts.js"></script>
 
 </html>

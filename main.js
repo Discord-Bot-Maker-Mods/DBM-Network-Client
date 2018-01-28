@@ -10,7 +10,7 @@ const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 require('electron-unhandled')();
 
 
-const isDev = (process.env.NODE_ENV !== 'production')
+const isDev = require('electron-is-dev')
 const isMac = (process.platform == 'darwin')
 
 

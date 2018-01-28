@@ -24,3 +24,8 @@
      top: -2px;
      right: 6px;
 }
+ .title-btn {
+    width: 49px;
+    height: 29px;
+    -webkit-text-stroke: 2px;
+}

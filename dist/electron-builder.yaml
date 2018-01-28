@@ -1,0 +1,5 @@
+directories:
+  output: dist
+  buildResources: build
+productName: DBM Mod Manager
+electronVersion: 1.7.11

@@ -1,139 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>DBM Mod Manager</title>
-      <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.css">
-   </head>
-   <body>
-      <div id="title-bar">
-         <div id="title">DBM Mod Manager</div>
-         <div id="title-bar-btns">     
-            <button class="btn btn-outline-secondary btn-sm" id="min-btn">-</button>     
-            <button class="btn btn-outline-secondary btn-sm" id="max-btn">+</button>      
-            <button class="btn btn-outline-secondary btn-sm" id="close-btn">x</button>     
-         </div>
-      </div>
-      <form>
-         <nav class="navbar navbar-light bg-faded">
-            <button class="btn">Add A Fake Mod</button>         
-         </nav>
-      </form>
-      <table class="table table-hover">
-         <thead>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DBM Mod Manager</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div id="title-bar">
+        <div id="title">DBM Mod Manager</div>
+        <div id="title-bar-btns">
+            <button class="btn btn-outline-secondary btn-sm" id="min-btn">-</button>
+            <button class="btn btn-outline-secondary btn-sm" id="max-btn">+</button>
+            <button class="btn btn-outline-secondary btn-sm" id="close-btn">x</button>
+        </div>
+    </div>
+    <form>
+        <nav class="navbar navbar-light bg-faded">
+            <button class="btn">Add A Fake Mod</button>
+        </nav>
+    </form>
+    <table class="table table-hover">
+        <thead>
             <tr>
-               <th scope="col">Name</th>
-               <th scope="col">Section</th>
-               <th scope="col">Author</th>
-               <th scope="col">Description</th>
+                <th scope="col">Name</th>
+                <th scope="col">Section</th>
+                <th scope="col">Author</th>
+                <th scope="col">Description</th>
             </tr>
-         </thead>
-         <tbody id="mods"></tbody>
-      </table>
-   </body>
-   <script>
-      const electron = require('electron');
-      const {ipcRenderer} = electron;
-      
-      const form = document.querySelector('form')
-      const mods = document.querySelector('#mods')
-      
-      
-      form.addEventListener('submit', submitForm)
-      
-      function submitForm(e){
-          e.preventDefault();
-          
-          const tr = document.createElement('tr')
-          tr.setAttribute('class', 'table-info')
-      
-          const name = document.createElement('th')
-          name.appendChild(document.createTextNode("Store JSON From WebAPI"))
-          name.setAttribute('scope','row')       
-          tr.appendChild(name)
-      
-          const section = document.createElement('td')
-          section.appendChild(document.createTextNode("JSON Things"))
-          tr.appendChild(section)
-      
-          const author = document.createElement('td')
-          author.appendChild(document.createTextNode("General Wrex"))
-          tr.appendChild(author)
-      
-          const desc = document.createElement('td')
-          desc.appendChild(document.createTextNode("Stores JSON from a webapi into a variable"))
-          tr.appendChild(desc)
-      
-          mods.appendChild(tr)
-      
-      }
-      
-   </script>
-   <style>
-      body {
-      padding: 0px;
-      margin: 0px;
-      }
-      #title-bar {
-      -webkit-app-region: drag;
-      height: 40px;
-      text-align: center;
-      line-height: 40px;
-      vertical-align: middle;
-      background-color: #181b19;
-      padding: none;
-      margin: 0px;
-      }
-      #title {
-      position: fixed;
-      top: 0px;
-      left: 6px;
-      color:white;
-      }
-      #title-bar-btns {
-      -webkit-app-region: no-drag;
-      position: fixed;
-      top: -2px;
-      right: 6px;
-      }
-   </style>
-   <script>
-      (function () {       
-          // Retrieve remote BrowserWindow
-          const {BrowserWindow} = require('electron').remote
-      
-          function init() {
-              // Minimize task
-              document.getElementById("min-btn").addEventListener("click", (e) => {
-                  var window = BrowserWindow.getFocusedWindow();
-                  window.minimize();
-              });
-      
-              // Maximize window
-              document.getElementById("max-btn").addEventListener("click", (e) => {
-                  var window = BrowserWindow.getFocusedWindow();
-                  if(window.isMaximized()){
-                      window.unmaximize();
-                  }else{
-                      window.maximize();
-                  }
-              });
-      
-              // Close app
-              document.getElementById("close-btn").addEventListener("click", (e) => {
-                  var window = BrowserWindow.getFocusedWindow();
-                  window.close();
-              });
-          };
-      
-          document.onreadystatechange =  () => {
-              if (document.readyState == "complete") {
-                  init();
-              }
-          };
-      })();
-   </script>
-   <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+        </thead>
+        <tbody id="mods"></tbody>
+    </table>
+</body>
+
+<script> window.$ = window.jQuery = require('../lib/jquery.min.js'); </script>
+<script src="../lib/bootstrap.js"></script>
+
+<script src="../js/titlebar.js"></script>
+<script src="../js/scripts.js"></script>
+
 </html>

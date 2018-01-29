@@ -11,16 +11,24 @@
      background-color: #181b19;
      padding: none;
      margin: 0px;
+     width: 100%;
+     overflow: none;
 }
  #title {
-     position: fixed;
      top: 0px;
      left: 6px;
      color:white;
 }
  #title-bar-btns {
+    position: absolute;
      -webkit-app-region: no-drag;
-     position: fixed;
      top: -2px;
      right: 6px;
+}
+ .title-btn {
+    width: 49px;
+    height: 29px;
+    -webkit-text-stroke: 1.25px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }

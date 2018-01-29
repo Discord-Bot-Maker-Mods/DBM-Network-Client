@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow:hidden;">
 
     <head>
         <meta charset="UTF-8">
@@ -10,25 +10,11 @@
         <link rel="stylesheet" href="../css/styles.css">
     </head>
 
-    <body>
+    <body>    
         <% include main/titlebar.ejs %>     
-        <form>
-            <% include main/navbar.ejs %>   
-        </form>
-		
-		<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
-		
-		
-        <table class="table table-hover">
+        <% include main/navbar.ejs %>   
+
+        <table class="table table-hover" >
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -43,6 +29,4 @@
 	<script src="../renderer.js"></script>
     <script src="../js/titlebar.js"></script>
     <script src="../js/scripts.js"></script>
-	
-
 </html>

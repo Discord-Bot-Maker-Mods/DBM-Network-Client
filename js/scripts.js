@@ -27,7 +27,7 @@ getMods();
  function addModToTable(action){
 
     const tr = document.createElement('tr')
-    tr.setAttribute('class', 'table-info')
+    tr.setAttribute('class', 'table-dark')
 
     const name = document.createElement('th')
     name.appendChild(document.createTextNode(action.name))

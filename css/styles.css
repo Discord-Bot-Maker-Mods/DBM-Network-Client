@@ -62,3 +62,24 @@ svg {
     fill: white;
     padding: 10px; 
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #888 ; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f1f1f1;  
+}
+
+.search {
+    float: left;
+    label: "hi";
+}

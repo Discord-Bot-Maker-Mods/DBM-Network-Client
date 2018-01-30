@@ -41,7 +41,7 @@ ejse.data('DBMMM', DBMMM)
 app.on('ready', function(){
 
     // create browser window
-    mainWindow = new BrowserWindow({width: DBMMM.Window.width, height: DBMMM.Window.height, frame: false}) //,icon:__dirname+'img/dbmmods.png'})
+    mainWindow = new BrowserWindow({width: DBMMM.Window.width, height: DBMMM.Window.height, minWidth: 750, minHeight: 300, frame: false}) //,icon:__dirname+'img/dbmmods.png'})
 
     // load index.html
     mainWindow.loadURL(url.format({

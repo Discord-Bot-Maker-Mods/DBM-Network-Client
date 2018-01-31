@@ -1,7 +1,16 @@
  const electron = require('electron');
  const {
-     ipcRenderer
+     ipcRenderer,
+     remote
  } = electron;
+
+ const Menu = remote.Menu;
+ const MenuItem = remote.MenuItem;
+
+
+
+ var menu = new Menu();
+ menu.append(new MenuItem({ label: 'Install Mod', click: function(e) { console.log("clicked"); } }));
 
  var https = require('https');
  var fs   = require('fs');
@@ -11,7 +20,6 @@
  const mods = document.querySelector('#mods')
 
 
- 
 function getMods(){
     fs.readdirSync(path.resolve("mods")).forEach(function(file) {
         if(file.match(/\.js/i)) {
@@ -29,8 +37,13 @@ getMods();
     const tr = document.createElement('tr')
     tr.setAttribute('class', 'table-dark')
 
-    const name = document.createElement('th')
-    name.appendChild(document.createTextNode(action.name))
+    const name = document.createElement('td')
+
+    const headerText = document.createElement("b")
+    headerText.innerHTML = action.name
+    name.appendChild(headerText)
+
+
     name.setAttribute('scope', 'row')
     tr.appendChild(name)
 
@@ -46,8 +59,12 @@ getMods();
     desc.appendChild(document.createTextNode(action.short_description ? action.short_description : "None"))
     tr.appendChild(desc)
 
-    mods.appendChild(tr)
+    tr.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      menu.popup(remote.getCurrentWindow());
+    });
 
+    mods.appendChild(tr)
  }
 
 // ---- wip

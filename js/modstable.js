@@ -1,4 +1,22 @@
  $(document).ready(function() {
+        
+        const electron = require('electron');
+        const {
+            ipcRenderer,
+            remote
+        } = electron;
+
+        const Menu = remote.Menu;
+        const MenuItem = remote.MenuItem;
+
+        var menu = new Menu();
+        menu.append(new MenuItem({ label: 'Install Mod', click: function(e) { console.log("AHH"); } }));
+
+
+
+
+
+		DBMMM.selectedMods = [];
 
         var calcDataTableHeight = function() {
             return $(window).height() - 155;
@@ -18,9 +36,23 @@
             "paging":  false,
             "sScrollX":calcDataTableWidth(),
             "bAutoWidth": false,
-             "dom":' <"search"f><"top"l>rt<"bottom"ip><"clear">'
+            "dom":' <"search"f><"top"l>rt<"bottom"ip><"clear">',			
         });
 
+		$("#modstable #mods tr").on('click', function(event) {
+            $("#modstable #mods tr").removeClass('row_selected');
+            		
+			var item = $(this).addClass('row_selected').find('td')[0];
+         
+            console.log( item.innerHTML);  
+
+            // future for multiselected
+            //$.each(tds, function(index, item) {
+                //console.log( item.innerHTML );  
+            //});
+        });
+        
+       		
         $('.dataTables_scrollBody').css('width', calcDataTableWidth() - 90)
         $('.dataTables_scrollBody').css('max-width', calcDataTableWidth() - 90);
 

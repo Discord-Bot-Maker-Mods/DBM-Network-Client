@@ -28,7 +28,14 @@ if (isDev) {
 
 // initialize the window
 let mainWindow;
+let splashWindow;
 
+
+const wait = (ms) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
 
 var DBMMM = {
     Window: { height: 650, width: 800 },
@@ -41,7 +48,17 @@ ejse.data('DBMMM', DBMMM)
 app.on('ready', function(){
 
     // create browser window
-    mainWindow = new BrowserWindow({width: DBMMM.Window.width, height: DBMMM.Window.height, frame: false}) //,icon:__dirname+'img/dbmmods.png'})
+    mainWindow = new BrowserWindow({width: DBMMM.Window.width, height: DBMMM.Window.height, frame: false, show: false}) //,icon:__dirname+'img/dbmmods.png'})
+
+
+    splashWindow = new BrowserWindow({width: 400, height: 400, transparent: true, frame: false, alwaysOnTop: true});
+
+    // load index.html
+    splashWindow.loadURL(url.format({
+        pathname: path.join(__dirname,'ejs' ,'splash.ejs'),
+        protocol: 'file',
+        slashes: true
+    }));
 
     // load index.html
     mainWindow.loadURL(url.format({
@@ -53,6 +70,17 @@ app.on('ready', function(){
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+
+    mainWindow.once('ready-to-show', () => {
+
+        // wait 2 seconds no matter what happens
+        setTimeout(function(){ 
+    
+            splashWindow.destroy();
+            mainWindow.show();
+    
+        }, 2000 );      
+      });
 
     // build menu
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);

@@ -8,7 +8,6 @@
  const MenuItem = remote.MenuItem;
 
 
-
  var menu = new Menu();
  menu.append(new MenuItem({ label: 'Install Mod', click: function(e) { console.log("clicked"); } }));
 
@@ -22,9 +21,9 @@
 
 function getMods(){
     fs.readdirSync(path.resolve("mods")).forEach(function(file) {
-        if(file.match(/\.js/i)) {
+        if(file.match(/\MOD.js/i)) {
             const action = require(path.join(path.resolve("mods"), file));
-            if(action.name) {
+            if(action.name && typeof action.action === "function") {
                 addModToTable(action);
             }
         }
@@ -73,6 +72,22 @@ getMods();
  let localfiles = [];
  let onlineCount;
 
+const BETA_MODS = "https://api.github.com/repos/Discord-Bot-Maker-Mods/DBM-Mods/contents/actions";
+const MASTER_MODS = "https://api.github.com/repos/Discord-Bot-Maker-Mods/DBM-Mods/contents/actions"
+
+
+function getOnlineMods(){
+
+    $.getJSON("https://api.github.com/repos/Discord-Bot-Maker-Mods/DBM-Mods/contents/actions", function(actions) {   
+        onlineCount = actions.length        
+        actions.forEach(action => {
+            onlinefiles.push(action)
+        })       
+    });
+
+}
+
+
 function downloadMasterMods(){
     $.getJSON("https://api.github.com/repos/Discord-Bot-Maker-Mods/DBM-Mods/contents/actions", function(actions) {   
         onlineCount = actions.length        
@@ -82,6 +97,8 @@ function downloadMasterMods(){
         })       
     });
 }
+
+
 
 function createActionFile(action){
     var filepath = path.resolve("mods\\" + action.name);

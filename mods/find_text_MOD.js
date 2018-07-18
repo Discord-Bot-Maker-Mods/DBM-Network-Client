@@ -6,7 +6,7 @@ module.exports = {
 // This is the name of the action displayed in the editor.
 //---------------------------------------------------------------------
 
-name: "Store UTC Time Info",
+name: "Find Text",
 
 //---------------------------------------------------------------------
 // Action Section
@@ -23,30 +23,26 @@ section: "Other Stuff",
 //---------------------------------------------------------------------
 
 subtitle: function(data) {
-	const time = ['UTC Year', 'UTC Month', 'UTC Day of the Month', 'UTC Hour', 'UTC Minute', 'UTC Second', 'UTC Millisecond'];
-	return `${time[parseInt(data.type)]}`;
+	return `Find "${data.wordtoFind}"`;
 },
 
 //---------------------------------------------------------------------
-	 // DBM Mods Manager Variables (Optional but nice to have!)
-	 //
-	 // These are variables that DBM Mods Manager uses to show information
-	 // about the mods for people to see in the list.
-	 //---------------------------------------------------------------------
+	// DBM Mods Manager Variables (Optional but nice to have!)
+	//
+	// These are variables that DBM Mods Manager uses to show information
+	// about the mods for people to see in the list.
+	//---------------------------------------------------------------------
 
-	 // Who made the mod (If not set, defaults to "DBM Mods")
-	 author: "Lasse",
+	// Who made the mod (If not set, defaults to "DBM Mods")
+	author: "iAmaury",
 
-	 // The version of the mod (Defaults to 1.0.0)
-	 version: "1.8.4",
+	// The version of the mod (Defaults to 1.0.0)
+	version: "1.8.7", //Added in 1.8.7
 
-	 // A short description to show on the mod line for this mod (Must be on a single line)
-	 short_description: "Stores UTC Time and Date",
+	// A short description to show on the mod line for this mod (Must be on a single line)
+	short_description: "Find text",
 
-	 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
-
-
-	 //---------------------------------------------------------------------
+	// If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
 
 //---------------------------------------------------------------------
 // Action Storage Function
@@ -57,9 +53,9 @@ subtitle: function(data) {
 variableStorage: function(data, varType) {
 	const type = parseInt(data.storage);
 	if(type !== varType) return;
-	return ([data.varName, "Number"]);
+	let dataType = 'Number';
+	return ([data.varName, dataType]);
 },
-
 //---------------------------------------------------------------------
 // Action Fields
 //
@@ -68,7 +64,7 @@ variableStorage: function(data, varType) {
 // are also the names of the fields stored in the action's JSON data.
 //---------------------------------------------------------------------
 
-fields: ["type", "storage", "varName"],
+fields: ["text", "wordtoFind", "position", "storage", "varName"],
 
 //---------------------------------------------------------------------
 // Command HTML
@@ -88,38 +84,45 @@ fields: ["type", "storage", "varName"],
 
 html: function(isEvent, data) {
 	return `
-	<div>
-		<p>
-			<u>Mod Info:</u><br>
-			Created by Lasse!
-		</p>
+    <div id="modinfo">
+	<p>
+	   <u>Mod Info:</u><br>
+	   Made by <b>iAmaury</b> !<br>
+	</p>
 	</div><br>
-<div>
-	<div style="padding-top: 8px; width: 70%;">
-		Time Info:<br>
-		<select id="type" class="round">
-			<option value="0" selected>UTC Year</option>
-			<option value="1">UTC Month</option>
-			<option value="2">UTC Day of the Month</option>
-			<option value="3">UTC Hour</option>
-			<option value="4">UTC Minute</option>
-			<option value="5">UTC Second</option>
-			<option value="6">UTC Millisecond</option>
+	<div style="float: left; width: 65%; padding-top: 8px;">
+		Text to Find:
+		<input id="wordtoFind" class="round" type="text">
+	</div>
+	<div style="float: left; width: 29%; padding-top: 8px;">
+		Position:<br>
+		<select id="position" class="round">
+			<option value="0" selected>Position at Start</option>
+			<option value="1">Position at End</option>
+	</select>
+	</div>
+	<div style="float: left; width: 99%; padding-top: 8px;">
+		Find text in:
+        <textarea id="text" rows="3" placeholder="Insert text here..." style="width: 95%; font-family: monospace; white-space: nowrap; resize: none;"></textarea>
+	</div>
+	<div style="float: left; width: 35%; padding-top: 8px;">
+		Store Result In:<br>
+		<select id="storage" class="round" onchange="glob.variableChange(this, 'varNameContainer')">
+			${data.variables[0]}
 		</select>
 	</div>
-</div><br>
-<div>
-	<div style="float: left; width: 35%;">
-		Store In:<br>
-		<select id="storage" class="round">
-			${data.variables[1]}
-		</select>
-	</div>
-	<div id="varNameContainer" style="float: right; width: 60%;">
+	<div id="varNameContainer" style="float: right; display: none; width: 60%; padding-top: 8px;">
 		Variable Name:<br>
-		<input id="varName" class="round" type="text"><br>
+		<input id="varName" class="round" type="text" >
 	</div>
-</div>`
+	<div style="float: left; width: 99%; padding-top: 8px;">
+	    <p>
+	    This action will output the position of the text depending of your choice.<br>
+		If you choose <b>Position at End</b>, it will find the position of the last character of your text.<br>
+		If you choose <b>Position at Start</b>, it will find the position of the first character of your text.
+		<b>Example</b>: We search word "a" | <u>This is<b> *</b>a<b>- </b>test</u> | * is the start (8) | - is the end (9)
+		</p>
+	</div>`
 },
 
 //---------------------------------------------------------------------
@@ -131,6 +134,9 @@ html: function(isEvent, data) {
 //---------------------------------------------------------------------
 
 init: function() {
+	const {glob, document} = this;
+
+	glob.variableChange(document.getElementById('storage'), 'varNameContainer');
 },
 
 //---------------------------------------------------------------------
@@ -142,39 +148,32 @@ init: function() {
 //---------------------------------------------------------------------
 
 action: function(cache) {
+
 	const data = cache.actions[cache.index];
-	const type = parseInt(data.type);
+	const text = this.evalMessage(data.text, cache);
+	const wordtoFind = this.evalMessage(data.wordtoFind, cache);
+	const position = parseInt(data.position);
+	// Check if everything is ok
+	if(!wordtoFind) return console.log("Please enter the word to find.")
+	if(!text) return console.log("Please enter some text.")
+
+	// Main code
 	let result;
-	switch(type) {
+	switch(position) {
 		case 0:
-			result = new Date().getUTCFullYear();
+			result = `${data.text}`.indexOf(`${data.wordtoFind}`)
 			break;
 		case 1:
-			result = new Date().getUTCMonth() + 1;
-			break;
-		case 2:
-			result = new Date().getUTCDate();
-			break;
-		case 3:
-			result = new Date().getUTCHours();
-			break;
-		case 4:
-			result = new Date().getUTCMinutes();
-			break;
-		case 5:
-			result = new Date().getUTCSeconds();
-			break;
-		case 6:
-			result = new Date().getUTCMilliseconds();
+			result = `${data.wordtoFind}`.length + `${data.text}`.indexOf(`${data.wordtoFind}`)
 			break;
 		default:
 			break;
 	}
-	if(result !== undefined) {
-		const storage = parseInt(data.storage);
-		const varName = this.evalMessage(data.varName, cache);
-		this.storeValue(result, storage, varName, cache);
-	}
+	// Storing
+	const storage = parseInt(data.storage);
+	const varName = this.evalMessage(data.varName, cache);
+	this.storeValue(result, storage, varName, cache);
+
 	this.callNextAction(cache);
 },
 

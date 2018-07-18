@@ -6,7 +6,7 @@ module.exports = {
 // This is the name of the action displayed in the editor.
 //---------------------------------------------------------------------
 
-name: "Store UTC Time Info",
+name: "Store Reaction Info",
 
 //---------------------------------------------------------------------
 // Action Section
@@ -14,7 +14,7 @@ name: "Store UTC Time Info",
 // This is the section the action will fall into.
 //---------------------------------------------------------------------
 
-section: "Other Stuff",
+section: "Messaging",
 
 //---------------------------------------------------------------------
 // Action Subtitle
@@ -23,30 +23,32 @@ section: "Other Stuff",
 //---------------------------------------------------------------------
 
 subtitle: function(data) {
-	const time = ['UTC Year', 'UTC Month', 'UTC Day of the Month', 'UTC Hour', 'UTC Minute', 'UTC Second', 'UTC Millisecond'];
-	return `${time[parseInt(data.type)]}`;
+	const reaction = ['You cheater!', 'Temp Variable', 'Server Variable', 'Global Variable'];
+	const info = ['Message Object', 'Bot reacted?', 'User List', 'Emoji Name', 'Reaction Count', 'User'];
+	return `${reaction[parseInt(data.reaction)]} - ${info[parseInt(data.info)]}`;
 },
 
 //---------------------------------------------------------------------
-	 // DBM Mods Manager Variables (Optional but nice to have!)
-	 //
-	 // These are variables that DBM Mods Manager uses to show information
-	 // about the mods for people to see in the list.
-	 //---------------------------------------------------------------------
+// DBM Mods Manager Variables (Optional but nice to have!)
+//
+// These are variables that DBM Mods Manager uses to show information
+// about the mods for people to see in the list.
+//---------------------------------------------------------------------
 
-	 // Who made the mod (If not set, defaults to "DBM Mods")
-	 author: "Lasse",
+// Who made the mod (If not set, defaults to "DBM Mods")
+author: "Lasse",
 
-	 // The version of the mod (Defaults to 1.0.0)
-	 version: "1.8.4",
+// The version of the mod (Defaults to 1.0.0)
+version: "1.8.8", //Added in 1.8.8
 
-	 // A short description to show on the mod line for this mod (Must be on a single line)
-	 short_description: "Stores UTC Time and Date",
+// A short description to show on the mod line for this mod (Must be on a single line)
+short_description: "Stores Messages Reaction information",
 
-	 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
+// If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
+depends_on_mods: [
+{name:'custommods',path:'abb_custom_methods_MOD.js'}
+],
 
-
-	 //---------------------------------------------------------------------
 
 //---------------------------------------------------------------------
 // Action Storage Function
@@ -57,7 +59,29 @@ subtitle: function(data) {
 variableStorage: function(data, varType) {
 	const type = parseInt(data.storage);
 	if(type !== varType) return;
-	return ([data.varName, "Number"]);
+	const info = parseInt(data.info);
+	let dataType = 'Unknown Type';
+	switch(info) {
+		case 0:
+			dataType = "Message";
+			break;
+		case 1:
+			dataType = "Boolean";
+			break;
+		case 2:
+			dataType = "List";
+			break;
+		case 3:
+			dataType = "String";
+			break;
+		case 4:
+			dataType = "Number";
+			break;
+		case 5:
+			dataType = "User";
+			break;
+	}
+	return ([data.varName2, dataType]);
 },
 
 //---------------------------------------------------------------------
@@ -68,7 +92,7 @@ variableStorage: function(data, varType) {
 // are also the names of the fields stored in the action's JSON data.
 //---------------------------------------------------------------------
 
-fields: ["type", "storage", "varName"],
+fields: ["reaction", "varName", "info", "storage", "varName2"],
 
 //---------------------------------------------------------------------
 // Command HTML
@@ -95,16 +119,27 @@ html: function(isEvent, data) {
 		</p>
 	</div><br>
 <div>
+	<div style="float: left; width: 35%;">
+		Source Reaction:<br>
+		<select id="reaction" class="round" onchange="glob.refreshVariableList(this)">
+			${data.variables[1]}
+		</select>
+	</div>
+	<div id="varNameContainer" style="float: right; width: 60%;">
+		Variable Name:<br>
+		<input id="varName" class="round" type="text" list="variableList"><br>
+	</div>
+</div><br><br><br>
+<div>
 	<div style="padding-top: 8px; width: 70%;">
-		Time Info:<br>
-		<select id="type" class="round">
-			<option value="0" selected>UTC Year</option>
-			<option value="1">UTC Month</option>
-			<option value="2">UTC Day of the Month</option>
-			<option value="3">UTC Hour</option>
-			<option value="4">UTC Minute</option>
-			<option value="5">UTC Second</option>
-			<option value="6">UTC Millisecond</option>
+		Source Info:<br>
+		<select id="info" class="round">
+			<option value="0" selected>Message Object</option>
+			<option value="5">User Who Reacted</option>
+			<option value="1">Bot Reacted?</option>
+			<option value="2">User Who Reacted List</option>
+			<option value="3">Emoji Name</option>
+			<option value="4">Same Reaction Count</option>
 		</select>
 	</div>
 </div><br>
@@ -115,13 +150,13 @@ html: function(isEvent, data) {
 			${data.variables[1]}
 		</select>
 	</div>
-	<div id="varNameContainer" style="float: right; width: 60%;">
+	<div id="varNameContainer2" style="float: right; width: 60%;">
 		Variable Name:<br>
-		<input id="varName" class="round" type="text"><br>
+		<input id="varName2" class="round" type="text"><br>
 	</div>
 </div>`
 },
-
+//display: none;
 //---------------------------------------------------------------------
 // Action Editor Init Code
 //
@@ -131,6 +166,9 @@ html: function(isEvent, data) {
 //---------------------------------------------------------------------
 
 init: function() {
+	const {glob, document} = this;
+
+	glob.refreshVariableList(document.getElementById('reaction'));
 },
 
 //---------------------------------------------------------------------
@@ -143,37 +181,45 @@ init: function() {
 
 action: function(cache) {
 	const data = cache.actions[cache.index];
-	const type = parseInt(data.type);
+	const reaction = parseInt(data.reaction);
+	const varName = this.evalMessage(data.varName, cache);
+	const info = parseInt(data.info);
+	var custommethods = this.getcustommethods(); //Find abb_custom_methods_MOD
+	const rea = custommethods.getReaction(reaction, varName, cache); //Get Reaction
+	if(!custommethods) console.log('Store Reaction Info ERROR: You need abb_custom_methods_MOD.js to use this modification'); //If abb_custom_methods_MOD.js file is missing -> Error
+	if(custommethods.Version < "1.0.1") console.log('Store Reaction Info ERROR: Please update abb_custom_methods_MOD.js to 1.0.1 or newer to use this modification'); //If custommethods are too old -> Error
+	if(!rea) {
+		console.log('This is not a reaction'); //Variable is not a reaction -> Error
+		this.callNextAction(cache);
+	}
 	let result;
-	switch(type) {
+	switch(info) {
 		case 0:
-			result = new Date().getUTCFullYear();
+			result = rea.message; //Message Object
 			break;
 		case 1:
-			result = new Date().getUTCMonth() + 1;
+			result = rea.me; //This bot reacted?
 			break;
 		case 2:
-			result = new Date().getUTCDate();
+			result = rea.users.array(); //All users who reacted list
 			break;
 		case 3:
-			result = new Date().getUTCHours();
+			result = rea.emoji.name; //Emoji (/Reaction) name
 			break;
 		case 4:
-			result = new Date().getUTCMinutes();
+			result = rea.count; //Number (user+bots) who reacted like this
 			break;
 		case 5:
-			result = new Date().getUTCSeconds();
-			break;
-		case 6:
-			result = new Date().getUTCMilliseconds();
+			const lastid = rea.users.lastKey(); //Stores last user ID reacted
+			result = cache.server.members.find('id', lastid);
 			break;
 		default:
 			break;
 	}
 	if(result !== undefined) {
 		const storage = parseInt(data.storage);
-		const varName = this.evalMessage(data.varName, cache);
-		this.storeValue(result, storage, varName, cache);
+		const varName2 = this.evalMessage(data.varName2, cache);
+		this.storeValue(result, storage, varName2, cache);
 	}
 	this.callNextAction(cache);
 },

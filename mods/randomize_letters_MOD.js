@@ -6,7 +6,7 @@ module.exports = {
 // This is the name of the action displayed in the editor.
 //---------------------------------------------------------------------
 
-name: "Store UTC Time Info",
+name: "Randomize Letters",
 
 //---------------------------------------------------------------------
 // Action Section
@@ -23,30 +23,26 @@ section: "Other Stuff",
 //---------------------------------------------------------------------
 
 subtitle: function(data) {
-	const time = ['UTC Year', 'UTC Month', 'UTC Day of the Month', 'UTC Hour', 'UTC Minute', 'UTC Second', 'UTC Millisecond'];
-	return `${time[parseInt(data.type)]}`;
+	return `Randomize [${data.input}]`;
 },
 
 //---------------------------------------------------------------------
-	 // DBM Mods Manager Variables (Optional but nice to have!)
-	 //
-	 // These are variables that DBM Mods Manager uses to show information
-	 // about the mods for people to see in the list.
-	 //---------------------------------------------------------------------
+	// DBM Mods Manager Variables (Optional but nice to have!)
+	//
+	// These are variables that DBM Mods Manager uses to show information
+	// about the mods for people to see in the list.
+	//---------------------------------------------------------------------
 
-	 // Who made the mod (If not set, defaults to "DBM Mods")
-	 author: "Lasse",
+	// Who made the mod (If not set, defaults to "DBM Mods")
+	author: "EGGSY",
 
-	 // The version of the mod (Defaults to 1.0.0)
-	 version: "1.8.4",
+	// The version of the mod (Defaults to 1.0.0)
+	version: "1.8.6",
 
-	 // A short description to show on the mod line for this mod (Must be on a single line)
-	 short_description: "Stores UTC Time and Date",
+	// A short description to show on the mod line for this mod (Must be on a single line)
+	short_description: "Randomize words!",
 
-	 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
-
-
-	 //---------------------------------------------------------------------
+	// If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
 
 //---------------------------------------------------------------------
 // Action Storage Function
@@ -57,9 +53,9 @@ subtitle: function(data) {
 variableStorage: function(data, varType) {
 	const type = parseInt(data.storage);
 	if(type !== varType) return;
-	return ([data.varName, "Number"]);
+	let dataType = 'Randomized Letters';
+	return ([data.varName, dataType]);
 },
-
 //---------------------------------------------------------------------
 // Action Fields
 //
@@ -68,56 +64,59 @@ variableStorage: function(data, varType) {
 // are also the names of the fields stored in the action's JSON data.
 //---------------------------------------------------------------------
 
-fields: ["type", "storage", "varName"],
+fields: ["input", "wordLength", "storage", "varName"],
 
 //---------------------------------------------------------------------
 // Command HTML
 //
 // This function returns a string containing the HTML used for
-// editting actions.
+// editting actions. 
 //
 // The "isEvent" parameter will be true if this action is being used
-// for an event. Due to their nature, events lack certain information,
+// for an event. Due to their nature, events lack certain information, 
 // so edit the HTML to reflect this.
 //
-// The "data" parameter stores constants for select elements to use.
+// The "data" parameter stores constants for select elements to use. 
 // Each is an array: index 0 for commands, index 1 for events.
-// The names are: sendTargets, members, roles, channels,
+// The names are: sendTargets, members, roles, channels, 
 //                messages, servers, variables
 //---------------------------------------------------------------------
 
 html: function(isEvent, data) {
 	return `
-	<div>
-		<p>
-			<u>Mod Info:</u><br>
-			Created by Lasse!
-		</p>
-	</div><br>
-<div>
-	<div style="padding-top: 8px; width: 70%;">
-		Time Info:<br>
-		<select id="type" class="round">
-			<option value="0" selected>UTC Year</option>
-			<option value="1">UTC Month</option>
-			<option value="2">UTC Day of the Month</option>
-			<option value="3">UTC Hour</option>
-			<option value="4">UTC Minute</option>
-			<option value="5">UTC Second</option>
-			<option value="6">UTC Millisecond</option>
+<div id="modinfo">
+	<p>
+	   <u>Mod Info:</u><br>
+	   Made by EGGSY!<br>
+	</p>
+	<div style="float: left; width: 60%; padding-top: 8px;">
+	   Randomize Letters:<br>
+	   <input id="input" class="round" type="text" placeholder="Use '*' for all options.">
+	</div>
+	<div style="float: right; width: 35%; padding-top: 8px;">
+	   Random Word Length:<br>
+	   <input id="wordLength" class="round" type="text">
+	</div><br><br><br>
+	<div style="float: left; width: 35%; padding-top: 8px;">
+		Store Result In:<br>
+		<select id="storage" class="round" onchange="glob.variableChange(this, 'varNameContainer')">
+			${data.variables[0]}
 		</select>
 	</div>
-</div><br>
-<div>
-	<div style="float: left; width: 35%;">
-		Store In:<br>
-		<select id="storage" class="round">
-			${data.variables[1]}
-		</select>
-	</div>
-	<div id="varNameContainer" style="float: right; width: 60%;">
+	<div id="varNameContainer" style="float: right; display: none; width: 60%; padding-top: 8px;">
 		Variable Name:<br>
-		<input id="varName" class="round" type="text"><br>
+		<input id="varName" class="round" type="text">
+	</div><br><br><br><br>
+	<div id="commentSection" style="padding-top: 8px;">
+		<p>
+		<b>Randomize Letters Options:</b><br>	
+		a: Lowercase alpha characters (abcdefghijklmnopqrstuvwxyz')<br>
+		A: Uppercase alpha characters (ABCDEFGHIJKLMNOPQRSTUVWXYZ')<br>
+		0: Numeric characters (0123456789')<br>
+		!: Special characters (~!@#$%^&()_+-={}[];\',.)<br>
+		*: All characters (all of the above combined)<br>
+		?: Custom characters (pass a string of custom characters to the options)
+		</p>
 	</div>
 </div>`
 },
@@ -131,50 +130,39 @@ html: function(isEvent, data) {
 //---------------------------------------------------------------------
 
 init: function() {
+	const {glob, document} = this;
+
+	glob.variableChange(document.getElementById('storage'), 'varNameContainer');
 },
 
 //---------------------------------------------------------------------
 // Action Bot Function
 //
 // This is the function for the action within the Bot's Action class.
-// Keep in mind event calls won't have access to the "msg" parameter,
+// Keep in mind event calls won't have access to the "msg" parameter, 
 // so be sure to provide checks for variable existance.
 //---------------------------------------------------------------------
 
 action: function(cache) {
+
 	const data = cache.actions[cache.index];
-	const type = parseInt(data.type);
-	let result;
-	switch(type) {
-		case 0:
-			result = new Date().getUTCFullYear();
-			break;
-		case 1:
-			result = new Date().getUTCMonth() + 1;
-			break;
-		case 2:
-			result = new Date().getUTCDate();
-			break;
-		case 3:
-			result = new Date().getUTCHours();
-			break;
-		case 4:
-			result = new Date().getUTCMinutes();
-			break;
-		case 5:
-			result = new Date().getUTCSeconds();
-			break;
-		case 6:
-			result = new Date().getUTCMilliseconds();
-			break;
-		default:
-			break;
-	}
-	if(result !== undefined) {
-		const storage = parseInt(data.storage);
-		const varName = this.evalMessage(data.varName, cache);
-		this.storeValue(result, storage, varName, cache);
-	}
+	const Input = this.evalMessage(data.input, cache);
+	const wordLength = this.evalMessage(data.wordLength, cache);
+
+	// Check if everything is ok
+	if(!Input) return console.log("Please specify letters to randomize.");
+	if(!wordLength) return console.log("Please specify amount of randomized letters.");
+	
+	// Main code
+	var WrexMODS = this.getWrexMods(); // I will always use Wrex' thing so I won't explain this everytime! Go go Wrex!
+	const randomize = WrexMODS.require('randomatic');
+	var random = randomize(Input, wordLength);
+
+	// Storing
+	const storage = parseInt(data.storage);
+	const varName = this.evalMessage(data.varName, cache);
+	this.storeValue(random, storage, varName, cache);
+
 	this.callNextAction(cache);
 },
 

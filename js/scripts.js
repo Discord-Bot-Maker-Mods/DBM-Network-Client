@@ -33,29 +33,28 @@ getMods();
     
  function addModToTable(action){
 
-    const tr = document.createElement('tr')
-    tr.setAttribute('class', 'table-dark')
+    const tr = document.createElement('tr');
+    tr.setAttribute('class', 'table-dark');
 
-    const name = document.createElement('td')
+    const name = document.createElement('td');
 
     const headerText = document.createElement("b")
-    headerText.innerHTML = action.name
-    name.appendChild(headerText)
+    headerText.innerHTML = action.name;
+    name.appendChild(headerText);
 
+    name.setAttribute('scope', 'row');
+    tr.appendChild(name);
 
-    name.setAttribute('scope', 'row')
-    tr.appendChild(name)
-
-    const section = document.createElement('td')
+    const section = document.createElement('td');
     section.appendChild(document.createTextNode(action.section))
     tr.appendChild(section)
 
-    const author = document.createElement('td')
-    author.appendChild(document.createTextNode(action.author ? action.author : "DBM"))
+    const author = document.createElement('td');
+    author.appendChild(document.createTextNode(action.author ? action.author : "DBM"));
     tr.appendChild(author)
 
-    const desc = document.createElement('td')
-    desc.appendChild(document.createTextNode(action.short_description ? action.short_description : "None"))
+    const desc = document.createElement('td');
+    desc.appendChild(document.createTextNode(action.short_description ? action.short_description : "None"));
     tr.appendChild(desc)
 
     tr.addEventListener('contextmenu', function (e) {

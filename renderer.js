@@ -1,7 +1,18 @@
-'use strict'
+const {webFrame} = require('electron'); 
 
-window.$ = window.jQuery = require('jquery')
-window.Tether = require('tether')
-window.Bootstrap = require('bootstrap')
+function initialize(){
+    webFrame.setZoomFactor(0.85);
 
-var DBMMM = {};
+}
+initialize();
+
+window.$ = window.jQuery = require('jquery');
+window.Tether = require('tether');
+window.Bootstrap = require('bootstrap');
+
+
+
+
+
+
+  

@@ -1,22 +1,20 @@
 // DBM Mod Installer - Electron JS Version
 'use strict';
+const electron = require('electron')
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 
-const {app, BrowserWindow, Menu, ipcMain} = require('electron')
-    , path = require('path')
-    , url = require('url')
-    , ejse = require('ejs-electron')
-
-
+const path = require('path');
+const url = require('url');
+const ejse = require('ejs-electron');
 require('electron-unhandled')();
 
-
-const isDev = require('electron-is-dev')
-const isMac = (process.platform == 'darwin')
+const isDev = require('electron-is-dev');
+const isMac = (process.platform == 'darwin');
 
 
 if (isDev) {
     console.log('Running in development');
-    //require('electron-debug')({showDevTools: true});
+    require('electron-debug')({showDevTools: true});
 
     require('electron-reload')(__dirname, {
         // Note that the path to electron may vary according to the main file
@@ -28,39 +26,9 @@ if (isDev) {
 
 // initialize the window
 let mainWindow;
-let splashWindow;
-
-
-const wait = (ms) => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  }
-
-var DBMMM = {
-    Window: { height: 650, width: 800 },
-    Checks: { isDev: isDev, isMac: isMac},
-    Actions: {}
-}
-
-ejse.data('DBMMM', DBMMM)
-
 app.on('ready', function(){
+    mainWindow = new BrowserWindow({width: 800, height: 600, frame: false, show: false}) //,icon:__dirname+'img/dbmmods.png'})
 
-    // create browser window
-    mainWindow = new BrowserWindow({width: DBMMM.Window.width, height: DBMMM.Window.height, frame: false, show: false}) //,icon:__dirname+'img/dbmmods.png'})
-
-
-    splashWindow = new BrowserWindow({width: 400, height: 400, transparent: true, frame: false, alwaysOnTop: true});
-
-    // load index.html
-    splashWindow.loadURL(url.format({
-        pathname: path.join(__dirname,'ejs' ,'splash.ejs'),
-        protocol: 'file',
-        slashes: true
-    }));
-
-    // load index.html
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname,'ejs' ,'index.ejs'),
         protocol: 'file',
@@ -72,15 +40,8 @@ app.on('ready', function(){
     });
 
     mainWindow.once('ready-to-show', () => {
-
-        // wait 2 seconds no matter what happens
-        setTimeout(function(){ 
-    
-            splashWindow.destroy();
-            mainWindow.show();
-    
-        }, 2000 );      
-      });
+        mainWindow.show();      
+    });
 
     // build menu
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);

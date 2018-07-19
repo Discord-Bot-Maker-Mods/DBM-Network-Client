@@ -9,29 +9,34 @@
     margin: 0px;
     width: 100%;
 }
- #title {
+
+#title {
     top: 0px;
     left: 6px;
     color:white;
 }
- #title-bar-btns {
+
+#title-bar-btns {
     position: absolute;
     -webkit-app-region: no-drag;
     top: -2px;
     right: 6px;
 }
- .title-btn {
+
+.title-btn {
     width: 49px;
     height: 29px;
     -webkit-text-stroke: 1.25px;
     padding-top: 2px;
     padding-bottom: 2px;
 }
+
 body {
     padding: 0px;
     margin: 0px;
 
 }
+
 .sidebar {
     left: 0;
     width: 60px;
@@ -39,28 +44,37 @@ body {
     padding-top: 40px;
     position: fixed;
 }
+
 .displayarea {
     padding: 0px;
     padding-top: 40px;
     margin-right: 15px;
     margin-left: 76px;
 }
+
 .icon-container-row {
     margin: 0px;
     padding-left: 0px;
 }
+
 .icon-container-col {
     margin: 0px;
     padding-left: 0px;
 }
+
 .btn-sidebar {
     margin: 0px;
     padding: 0px;
     border: 0px;
 }
+
 svg {
     fill: white;
     padding: 10px; 
+}
+
+.selected-svg {
+    color:rgb(255, 255, 255)
 }
 
 ::-webkit-scrollbar {

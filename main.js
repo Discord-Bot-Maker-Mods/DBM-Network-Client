@@ -27,7 +27,7 @@ if (isDev) {
 // initialize the window
 let mainWindow;
 app.on('ready', function(){
-    mainWindow = new BrowserWindow({width: 800, height: 600, frame: false, show: false}) //,icon:__dirname+'img/dbmmods.png'})
+    mainWindow = new BrowserWindow({width: 800, height: 600, frame: false, show: false ,icon: 'img/icon.png'});
 
     // window options
     mainWindow.setMinimumSize(680, 480);

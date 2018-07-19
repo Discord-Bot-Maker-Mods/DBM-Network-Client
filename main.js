@@ -99,3 +99,24 @@ if(isDev) mainMenuTemplate.push(
 );
 
 if (isMac) mainMenuTemplate.push({});
+
+// discord rich presence
+const DiscordRPC = require('discord-rpc');
+const rpc = new DiscordRPC.Client({ transport: 'ipc' });
+const startTimestamp = new Date();
+
+rpc.once('ready', () => {
+
+    rpc.setActivity({
+        details: "Using DBM Network Client!",
+        state: isDev ? 'Developing On It!' : 'Using It!',
+        startTimestamp,
+        largeImageKey: '',
+        largeImageText: '',
+        smallImageKey: '',
+        smallImageText: '',
+        instance: true,
+    });    
+});
+
+rpc.login("469611902528520193").catch(console.error);

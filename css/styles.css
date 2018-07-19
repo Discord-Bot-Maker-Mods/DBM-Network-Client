@@ -104,3 +104,10 @@ tr.row_selected td{
 	
 }
 
+.icon {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
+}

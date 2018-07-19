@@ -23,7 +23,8 @@
     "popper": "^1.0.1",
     "popper.js": "^1.12.9",
     "tether": "^1.4.3",
-    "web-frame": "0.0.2"
+    "web-frame": "0.0.2",
+    "open-iconic": "1.1.1"
   },
   "devDependencies": {
     "electron": "^1.7.11",

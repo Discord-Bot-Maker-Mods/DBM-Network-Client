@@ -3244,6 +3244,10 @@ once@^1.3.0, once@^1.3.3, once@^1.4.0:
   dependencies:
     wrappy "1"
 
+open-iconic@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/open-iconic/-/open-iconic-1.1.1.tgz#9dcfc8c7cd3c61cdb4a236b1a347894c97adc0c6"
+
 os-browserify@~0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.1.2.tgz#49ca0293e0b19590a5f5de10c7f265a617d8fe54"
@@ -4788,6 +4792,10 @@ wd@*:
     request "2.79.0"
     underscore.string "3.3.4"
     vargs "0.1.0"
+
+web-frame@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/web-frame/-/web-frame-0.0.2.tgz#da01216b4927434678182a80a7f9e33f1e026b17"
 
 which-module@^2.0.0:
   version "2.0.0"

@@ -29,6 +29,9 @@ let mainWindow;
 app.on('ready', function(){
     mainWindow = new BrowserWindow({width: 800, height: 600, frame: false, show: false}) //,icon:__dirname+'img/dbmmods.png'})
 
+    // window options
+    mainWindow.setMinimumSize(680, 480);
+
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname,'ejs' ,'index.ejs'),
         protocol: 'file',

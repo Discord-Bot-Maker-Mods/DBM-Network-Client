@@ -52,9 +52,6 @@ app.on('ready', function(){
     Menu.setApplicationMenu(mainMenu);
 });
 
-ipcMain.on('mod:install', function(e, item){
-    mainWindow.webContents.send('mod:install', item)
-})
 
 // if its on a mac, close it properly
 app.on('window-all-closed', () => {
@@ -105,18 +102,25 @@ const DiscordRPC = require('discord-rpc');
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 const startTimestamp = new Date();
 
-rpc.once('ready', () => {
-
+function setActivity(mode, time){
     rpc.setActivity({
-        details: "Using DBM Network Client!",
-        state: isDev ? 'Developing On It!' : 'Using It!',
-        startTimestamp,
+        details: "DBM Network Client!",
+        state: 'Mode: ' + mode,
+        startTimestamp: time,
         largeImageKey: '',
         largeImageText: '',
         smallImageKey: '',
         smallImageText: '',
-        instance: true,
+        instance: false,
     });    
+}
+
+ipcMain.on('mode:changed', function(e, changed){
+    setActivity(changed.mode, new Date());
+});
+
+rpc.once('ready', () => {
+    setActivity("Development", startTimestamp);    
 });
 
 rpc.login("469611902528520193").catch(console.error);

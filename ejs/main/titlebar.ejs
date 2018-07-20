@@ -1,10 +1,10 @@
 <script>
-    function updateIcon(){
+    function updateIcon(btn){
         if(!window.screenTop && !window.screenY){
-            document.getElementById("max-btn").innerHTML = "&#x1f5d6;";
+            btn.innerHTML = "&#x1f5d6;";
         }
         else {
-            document.getElementById("max-btn").innerHTML = "&#128471;";
+            btn.innerHTML = "&#128471;";
         }
     }
 </script>
@@ -14,7 +14,7 @@
     <div id="title"> <img class="mr-1 mb-1" src="../img/icon.png" width="30" height="30" alt=""> DBM Network Client - Mod Manager</div>
     <div id="title-bar-btns">       
         <button class="btn btn-outline-primary btn-sm title-btn" id="min-btn">&#x1f5d5;</button>
-        <button class="btn btn-outline-primary btn-sm title-btn" id="max-btn" onclick="updateIcon()">&#x1f5d6;</button>
+        <button class="btn btn-outline-primary btn-sm title-btn" id="max-btn" onclick="updateIcon(this)">&#x1f5d6;</button>
         <button class="btn btn-outline-danger btn-sm title-btn" id="close-btn">&#x2715;</button>
     </div>
 </div>

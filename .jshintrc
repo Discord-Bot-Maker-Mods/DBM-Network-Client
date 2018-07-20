@@ -1,3 +1,17 @@
 {
-    "esversion": 6
+    "undef"         : true,     // true: Require all non-global variables to be declared (prevents global leaks)
+    "unused"        : true,     // Unused variables:
+    "strict"        : true,     // true: Requires all functions run in ES5 Strict Mode
+    "maxparams"     : false,    // {int} Max number of formal params allowed per function
+    "maxdepth"      : false,    // {int} Max depth of nested blocks (within functions)
+    "maxstatements" : false,    // {int} Max number statements per function
+    "maxcomplexity" : false,    // {int} Max cyclomatic complexity per function
+    "varstmt"       : true,    // true: Disallow any var statements. Only `let` and `const` are allowed.
+    "asi"           : false,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
+    "boss"          : false,     // true: Tolerate assignments where comparisons would be expected
+    "debug"         : false,     // true: Allow debugger statements e.g. browser breakpoints.
+    "eqnull"        : false,     // true: Tolerate use of `== null`
+    "esversion"     : 6,         // {int} Specify the ECMAScript version to which the code must adhere.
+    "moz"           : false,    // true: Allow Mozilla specific syntax (extends and overrides esnext features)
+    "node"          : true
 }

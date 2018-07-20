@@ -32,14 +32,16 @@ It will run on Windows and Linux Desktop.  You will be able to manage Mods, Them
 ```
 
 ### Install Dependencies
+Only do npm audit fix if it tells you to.
 ```bash
   npm install
+  npm audit fix 
 ```
 
 ### Testing
 This will start the development server allowing you to change files, and it will auto-refresh with changes
 ```bash
-  electron .
+  npm start
 ```
 
 

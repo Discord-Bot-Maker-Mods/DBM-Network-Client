@@ -7,23 +7,26 @@
       <title>DBM Network Client</title>
 
       <link rel="stylesheet" href="../css/bootstrap.css">
-      <link rel="stylesheet" href="../css/styles.css">
-      <link rel="stylesheet" type="text/css" href="../lib/datatables/datatables.min.css"/>
-      <link rel="stylesheet" href="../node_modules/open-iconic/font/css/open-iconic-bootstrap.css">
+      <link rel="stylesheet" href="../css/index.css">
+	  <link rel="stylesheet" href="../css/titlebar.css">
+	  <link rel="stylesheet" href="../css/sidebar.css">    
+      <link rel="stylesheet" href="../node_modules/open-iconic/font/css/open-iconic-bootstrap.css">     
    </head>
+   <script src="../renderer.js"></script>
    <body>
       <div >
-         <% include main/titlebar.ejs %>       
+         <% include titlebar %>       
          <div class="row" id="mainrow">
-            <% include main/sidebar.ejs %>    
-            <% include main/modstable.ejs %>              
+            <% include sidebar %>              
+            <div class="col displayarea" style="overflow: auto; user-select: none;">
+                <%# this is temp while the framework is figured out!%>
+                <% include ../modes/mods/mods %> 
+            </div>       
          </div>
+         <% include statusbar %>   
       </div>
-   </body>
-   
-   <script src="../renderer.js"></script>
+   </body> 
+   <script src="../js/index.js"></script>
    <script src="../js/titlebar.js"></script>
-   <script src="../js/scripts.js"></script>
-   <script type="text/javascript" src="../lib/datatables/datatables.min.js"></script>
-   <script src="../js/modstable.js"></script>
+   <script src="../js/sidebar.js"></script>  
 </html>

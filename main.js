@@ -1,11 +1,11 @@
 // DBM Mod Installer - Electron JS Version
 'use strict';
-const electron = require('electron')
+const electron = require('electron');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 const path = require('path');
 const url = require('url');
-const ejse = require('ejs-electron');
+const ejs = require('ejs-electron');
 require('electron-unhandled')();
 
 const isDev = require('electron-is-dev');
@@ -58,7 +58,7 @@ app.on('window-all-closed', () => {
     if(process.platform !== 'darwin'){
         app.quit();
     }
-})
+});
 
 // file menu
 const mainMenuTemplate = [
@@ -75,7 +75,7 @@ const mainMenuTemplate = [
         ]
     }
     
-]
+];
 
 if(isDev) mainMenuTemplate.push(
     {
@@ -88,7 +88,7 @@ if(isDev) mainMenuTemplate.push(
                 label: 'Open Dev Tools',
                 accelerator: isMac ? 'Command+I' : "Ctrl+I",
                 click(item, focusedWindow){
-                    focusedWindow.openDevTools()
+                    focusedWindow.openDevTools();
                 }
             }
         ]

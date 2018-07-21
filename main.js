@@ -30,7 +30,7 @@ app.on('ready', function(){
     mainWindow = new BrowserWindow({width: 800, height: 600, frame: false, show: false ,icon: 'img/icon.png'});
 
     // window options
-    mainWindow.setMinimumSize(680, 480);
+    mainWindow.setMinimumSize(800, 600);
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname,'ejs' ,'index.ejs'),
@@ -98,6 +98,7 @@ if(isDev) mainMenuTemplate.push(
 if (isMac) mainMenuTemplate.push({});
 
 // discord rich presence
+/*
 const DiscordRPC = require('discord-rpc');
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 const startTimestamp = new Date();
@@ -124,3 +125,4 @@ rpc.once('ready', () => {
 });
 
 rpc.login("469611902528520193").catch(console.error);
+*/

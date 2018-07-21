@@ -12,11 +12,15 @@
     border: 0px;
 }
 
+.btn-sidebar:active {
+    color:rgb(255, 255, 255)
+}
+
 svg {
     fill: white;
     padding: 10px; 
 }
 
 .selected-svg {
-    color:rgb(255, 255, 255)
+    
 }

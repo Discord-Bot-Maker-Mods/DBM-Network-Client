@@ -1,34 +1,93 @@
 <nav>
       <div class="sidebar bg-primary justify-content-center" id="sidebar">
             <div class="row icon-container-row">
-                  <div class="mode col icon-container-col btn-primary active" name="home-mode">
+                  <div class="mode col icon-container-col btn-primary slider active" data-placement="right" data-toggle="tooltip" title="Home"  name="home-mode">
                         <span class="oi oi-home icon"></span>
-                        <p class="ml-3 small">Home</p>
+                        <p class="small slider" style="margin-left: 14px">Home</p>
                   </div>
             </div>
             <div class="row icon-container-row">
-                  <div class="mode col icon-container-col btn-primary" name="mods-mode">
+                  <div class="mode col icon-container-col btn-primary slider" data-placement="right" data-toggle="tooltip" title="Mods Manager" name="mods-mode">
                         <span class="oi oi-wrench icon"></span>
-                        <p class="ml-3 small">Mods</p>
+                        <p class="small hover-slide" style="margin-left: 16px">Mods</p>
                   </div>
             </div>
             <div class="row icon-container-row">
-                  <div class="col mode icon-container-col btn-primary" name="data-mode">
+                  <div class="col mode icon-container-col btn-primary slider" data-placement="right" data-toggle="tooltip" title="Data File Manager" name="data-mode">
                         <span class="oi oi-file icon"></span>
-                        <p class="ml-3 small">Data Files</p>
+                        <p class="ml-3 small hover-slide">Data Files</p>
                   </div>
             </div>
             <div class="row icon-container-row">
-                  <div class="col mode icon-container-col btn-primary" name="themes-mode">
+                  <div class="col mode icon-container-col btn-primary slider" data-placement="right" data-toggle="tooltip" title="Manage Themes" name="themes-mode">
                         <span class="oi oi-pencil icon"></span>
-                        <p class="ml-2 small">Themes</p></p>
+                        <p class="ml-2 small ">Themes</p></p>
                   </div>
             </div>
             <div class="row icon-container-row">
-                  <div class="col mode icon-container-col btn-primary" name="settings-mode">
-                        <span class="oi oi-cog icon"></span>
-                        <p class="ml-2 small">Settings</p>
-                  </div>
+            <div class="col mode icon-container-col btn-primary slider" data-placement="right" data-toggle="tooltip" title="App Settings" name="settings-mode">
+                  <span class="oi oi-cog icon"></span>
+                  <p class="ml-2 small">Settings</p>
             </div>
       </div>
+            <div class="row icon-container-row">
+                  <div class="mode col icon-container-col btn-primary slider" data-placement="right" data-toggle="tooltip" title="Online Services" name="online-mode">
+                        <span class="oi oi-wifi icon"></span>
+                        <p class="small" style="margin-left: 12px">Online</p>                     
+                  </div>
+            </div>
+
+      </div>
 </nav>
+<script>
+      $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip(); 
+      });
+
+      const slide_speed = 275;
+
+      $('.slider').each(function(i, obj) {          
+            if(!$(this).hasClass('active')){
+                  $(this).find('p').slideUp(slide_speed,() =>{ $(this).data('slid', false);  });
+            }else{
+                  $(this).data('slid', true);
+            }
+      });
+           
+      $('.slider').click(function() {
+            if(!$(this).data('slid')){
+                  $(this).find('p').slideDown(slide_speed);
+                  $(this).data('slid', true);               
+            }   
+
+            $('.slider').each(function(i, obj) {        
+                  if($(this).hasClass('active')){
+                        $(this).find('p').slideUp(slide_speed,() =>{ $(this).data('slid', false);  });
+                  }
+            });
+      });
+</script>
+<style>
+      .sidebar {
+            left: 0;
+            width: 60px;
+            height: 100%;
+            padding-top: 40px;
+            position: fixed;
+      }
+
+      .btn-sidebar {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+      }
+
+      .btn-sidebar:active {
+            color:rgb(255, 255, 255)
+      }
+
+      svg {
+            fill: white;
+            padding: 10px; 
+      }
+</style>

@@ -5,35 +5,36 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>DBM Network Client</title>
-      <link rel="stylesheet" type="text/css" href="../lib/datatables/datatables.min.css"/>
-      <link rel="stylesheet" href="../css/bootstrap.css">
       <link rel="stylesheet" href="../css/index.css">
-	  <link rel="stylesheet" href="../css/titlebar.css">
-	  <link rel="stylesheet" href="../css/sidebar.css">    
+      <link rel="stylesheet" type="text/css" href="../lib/datatables/datatables.min.css"/>
+      <link rel="stylesheet" href="../css/bootstrap.css">     
       <link rel="stylesheet" href="../node_modules/open-iconic/font/css/open-iconic-bootstrap.css">         
 
    </head>
    <script src="../renderer.js"></script>
    <body>
-      <div id="main">
+      <div id="main" class="app">
          <% include titlebar %>       
-         <div class="row" id="mainrow">
-            <% include sidebar %>              
+         <div class="row" id="mainrow">                
+            <% include sidebar %>     
+                 
             <div class="col displayarea" style="user-select: none;">
                 <% include ../modes/home %> 
                 <% include ../modes/mods/mods %> 
                 <% include ../modes/dataFiles %> 
                 <% include ../modes/themes %> 
                 <% include ../modes/settings %> 
+                <% include ../modes/online/online %> 
             </div>       
          </div>
          <% include statusbar %>   
       </div>
+      <script type="text/javascript" src="../lib/datatables/datatables.min.js"></script>
+      <script src="../js/index.js"></script>
+      <script src="../js/titlebar.js"></script>
+      <script src="../js/sidebar.js"></script>     
+   
+      <script src="../modes/mods/mods.js"></script>  
    </body> 
-   <script type="text/javascript" src="../lib/datatables/datatables.min.js"></script>
-   <script src="../js/index.js"></script>
-   <script src="../js/titlebar.js"></script>
-   <script src="../js/sidebar.js"></script>     
 
-   <script src="../modes/mods/mods.js"></script>  
 </html>

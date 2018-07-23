@@ -6,7 +6,7 @@ const _title = document.title;
 
 // set all pages to display none
 const mode_pages = document.getElementsByClassName("mode-page");
-for (var j = 0; j < mode_pages.length; j++) {
+for (let j = 0; j < mode_pages.length; j++) {
     mode_pages[j].style.display = "none"; 
 }
 
@@ -19,19 +19,24 @@ for (let i = 0; i < modes.length; i++) {
   modes[i].addEventListener("click", function() {
      
     let current = sidebar.getElementsByClassName("active");
+
     let page = document.getElementById(this.getAttribute("name"));
     
-    current[0].className = current[0].className.replace(" active", "");
-      
-    activePage.style.display = "none";     
-    page.style.display = "block";   
-    
-    this.className += " active"; 
-    activePage = page;
+    if(activePage) activePage.style.display = "none";   
 
-    let title = page.getAttribute("name");
+    if(current && page){
+        current[0].className = current[0].className.replace(" active", "");
+    }
+
+    let title = this.getAttribute("name");
+    if(page){
+      page.style.display = "block";   
+      activePage = page;
+      title = page.getAttribute("name");
+    }            
+    this.className += " active"; 
+            
     document.getElementById("mode").innerText = title;
-    document.title = `${_title} - ${title}`;
+    document.title = `${_title} - ${title}`;   
   });
-  
 }

@@ -1,7 +1,7 @@
 <nav>
       <div class="sidebar bg-primary justify-content-center" id="sidebar">
             <div class="row icon-container-row">
-                  <div class="mode col icon-container-col btn-primary slider active" data-placement="right" data-toggle="tooltip" title="Home"  name="home-mode">
+                  <div class="mode col icon-container-col btn-primary slider" data-placement="right" data-toggle="tooltip" title="Home"  name="home-mode">
                         <span class="oi oi-home icon"></span>
                         <p class="small slider" style="margin-left: 14px">Home</p>
                   </div>
@@ -40,32 +40,35 @@
       </div>
 </nav>
 <script>
-      $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip(); 
-      });
 
-      const slide_speed = 275;
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip(); 
+});
 
-      $('.slider').each(function(i, obj) {          
-            if(!$(this).hasClass('active')){
+const slide_speed = 275;
+
+
+$('.slider').each(function(i, obj) {          
+      if(!$(this).hasClass('active')){
+            $(this).find('p').slideUp(slide_speed,() =>{ $(this).data('slid', false);  });
+      }else{
+            $(this).data('slid', true);
+      }
+});
+
+$('.slider').click(function(func) {
+
+      if(!$(this).data('slid')){
+            $(this).find('p').slideDown(slide_speed);
+            $(this).data('slid', [true, 1]);               
+      }   
+    
+      $('.slider').each(function(i, obj) {        
+            if($(this).hasClass('active')){
                   $(this).find('p').slideUp(slide_speed,() =>{ $(this).data('slid', false);  });
-            }else{
-                  $(this).data('slid', true);
             }
       });
-           
-      $('.slider').click(function() {
-            if(!$(this).data('slid')){
-                  $(this).find('p').slideDown(slide_speed);
-                  $(this).data('slid', true);               
-            }   
-
-            $('.slider').each(function(i, obj) {        
-                  if($(this).hasClass('active')){
-                        $(this).find('p').slideUp(slide_speed,() =>{ $(this).data('slid', false);  });
-                  }
-            });
-      });
+});
 </script>
 <style>
       .sidebar {

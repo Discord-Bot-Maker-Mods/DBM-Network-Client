@@ -10,8 +10,22 @@ for (let j = 0; j < mode_pages.length; j++) {
     mode_pages[j].style.display = "none"; 
 }
 
-let activePage = document.getElementById("home-mode");
+let active_page_id = settings.has('active_page') ? settings.get('active_page') : "home-mode";
+
+let activePage = document.getElementById(active_page_id);
 activePage.style.display = "block";  
+
+if(activePage){
+  let active = $(`div[name="${activePage.id}"]`);
+  if(active) {
+    active.addClass('active');
+    
+    if(!active.data('slid')){
+      active.find('p').slideDown('fast');
+      active.data('slid', true);               
+    }      
+  }  
+}
 
 const modes = document.getElementsByClassName("mode");
 for (let i = 0; i < modes.length; i++) {
@@ -33,6 +47,8 @@ for (let i = 0; i < modes.length; i++) {
       page.style.display = "block";   
       activePage = page;
       title = page.getAttribute("name");
+
+      settings.set('active_page', page.id );
     }            
     this.className += " active"; 
             

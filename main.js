@@ -1,7 +1,7 @@
 // DBM Mod Installer - Electron JS Version
 'use strict';
 const electron = require('electron');
-const { app, BrowserWindow, Menu, ipcMain } = electron;
+const { app, BrowserWindow, Menu, ipcMain, Tray } = electron;
 
 const path = require('path');
 const url = require('url');
@@ -25,8 +25,21 @@ if (isDev) {
 }
 
 // initialize the window
-let mainWindow;
+let mainWindow = null;
+let tray = null;
 app.on('ready', function(){
+
+    tray = new Tray('img/icon.png');
+    const contextMenu = Menu.buildFromTemplate(trayMenuTemplate);
+
+    tray.on('click', () => {
+        mainWindow.show();   
+    });
+
+    tray.setToolTip('DBM Network Client: 0 Bots Running.');
+    tray.setContextMenu(contextMenu);
+
+
     mainWindow = new BrowserWindow({width: 800, height: 600, frame: false, show: false ,icon: 'img/icon.png'});
 
     // window options
@@ -40,10 +53,24 @@ app.on('ready', function(){
 
     mainWindow.on('closed', () => {
         mainWindow = null;
+        tray = null;
     });
 
     mainWindow.once('ready-to-show', () => {
         mainWindow.show();      
+    });
+
+    mainWindow.on('minimize', function (event) {
+        if(!app.isQuiting){
+            event.preventDefault();
+            mainWindow.hide();
+        }
+    
+        return false;
+    });
+    
+    mainWindow.on('show', function () {
+        tray.setHighlightMode('always');
     });
 
     // build menu
@@ -73,27 +100,57 @@ const mainMenuTemplate = [
                 }
             }
         ]
-    }
-    
+    }  
 ];
 
-if(isDev) mainMenuTemplate.push(
+const trayMenuTemplate = [
     {
-        label:'Development',
-        submenu:[
-            {
-                role: 'reload'
-            },
-            {
-                label: 'Open Dev Tools',
-                accelerator: isMac ? 'Command+I' : "Ctrl+I",
-                click(item, focusedWindow){
-                    focusedWindow.openDevTools();
+        label: 'Quit',
+        accelerator: isMac ? 'Command+Q' : "Ctrl+Q",
+        click(){
+            app.quit();
+         }                  
+    }  
+];
+
+if(isDev){
+
+    mainMenuTemplate.push(
+        {
+            label:'Development',
+            submenu:[
+                {
+                    role: 'reload'
+                },
+                {
+                    label: 'Open Dev Tools',
+                    accelerator: isMac ? 'Command+I' : "Ctrl+I",
+                    click(item, focusedWindow){
+                        focusedWindow.openDevTools();
+                    }
                 }
-            }
-        ]
-    }
-);
+            ]
+        }
+    );
+
+    trayMenuTemplate.push(
+        {
+            label:'Development',
+            submenu:[
+                {
+                    role: 'reload'
+                },
+                {
+                    label: 'Open Dev Tools',
+                    accelerator: isMac ? 'Command+I' : "Ctrl+I",
+                    click(item, focusedWindow){
+                        mainWindow.openDevTools();
+                    }
+                }
+            ]
+        }
+    );
+} 
 
 if (isMac) mainMenuTemplate.push({});
 

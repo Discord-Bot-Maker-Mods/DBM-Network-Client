@@ -24,6 +24,9 @@ if(activePage){
       active.find('p').slideDown('fast');
       active.data('slid', true);               
     }      
+    let title = activePage.getAttribute("name");
+    document.getElementById("mode").innerText = title;
+    document.title = `${_title} - ${title}`;   
   }  
 }
 
@@ -43,6 +46,7 @@ for (let i = 0; i < modes.length; i++) {
     }
 
     let title = this.getAttribute("name");
+
     if(page){
       page.style.display = "block";   
       activePage = page;

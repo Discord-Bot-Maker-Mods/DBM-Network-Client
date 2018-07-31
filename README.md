@@ -50,11 +50,6 @@ This will start the development server allowing you to change files, and it will
 Just fork the repository, make some changes, and create a pull request!
 
 
-## Contributing
-
-Just fork the repository, make some changes, and create a pull request!
-
-
 # Patreon
 
 DBM Network has a Patreon located [Here](https://www.patreon.com/dbmnetwork)!

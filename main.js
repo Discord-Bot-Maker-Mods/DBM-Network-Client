@@ -67,12 +67,12 @@ app.on('ready', function(){
     'height': mainWindowState.height,
     frame: false, 
     show: false ,
-    icon: 'img/icon.png'});
+    icon: 'img/splash-icon.png'});
 
 
     mainWindowState.manage(mainWindow);
 
-    tray = new Tray('img/icon.png');
+    tray = new Tray('img/splash-icon.png');
     const contextMenu = Menu.buildFromTemplate(trayMenuTemplate);
 
     tray.on('click', () => {

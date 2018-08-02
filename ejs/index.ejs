@@ -1,79 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DBM Mod Manager</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
+<html lang="en" style="overflow:hidden;">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>DBM Network Client</title>
+      <link rel="stylesheet" href="../css/index.css">
+      <link rel="stylesheet" type="text/css" href="../lib/datatables/datatables.min.css"/>
+      <link rel="stylesheet" href="../css/bootstrap.css">     
+      <link rel="stylesheet" href="../node_modules/open-iconic/font/css/open-iconic-bootstrap.css">         
 
-<body>    
-    <% include main/titlebar.ejs %>       
-    <div class="row">
-        <% include main/sidebar.ejs %>
+   </head>
+   <script src="../renderer.js"></script>
+   <body>
+      <div id="main" class="app">
+         <% include titlebar %>       
+         <div class="row" id="mainrow">                
+            <% include sidebar %>     
+                 
+            <div class="col displayarea" style="user-select: none;">
+                <% include ../modes/home %> 
+                <% include ../modes/mods/mods %> 
+                <% include ../modes/dataFiles %> 
+                <% include ../modes/themes %> 
+                <% include ../modes/settings %> 
+                <% include ../modes/online/online %> 
+            </div>       
+         </div>
+         <% include statusbar %>   
+      </div>
+      <script type="text/javascript" src="../lib/datatables/datatables.min.js"></script>
+      <script src="../js/index.js"></script>
+      <script src="../js/titlebar.js"></script>
+      <script src="../js/sidebar.js"></script>     
+   
+      <script src="../modes/mods/mods.js"></script>  
 
-        <!-- Think of this as the page's actual body -->
-        <div class="col displayarea">
+      <script> setTimeout(() => ipcRenderer.send('show_window'), 500 ) </script>
+   </body> 
 
-            <div id="modlist" >
-                <h4 class="text-center mt-0 mb-0 bg-success pt-2 pb-2">Mods</h4>
-                <table class="table table-hover mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Section</th>
-                            <th scope="col">Author</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                </table>
-                <div class="wrexdiv" style="overflow-y: scroll;">
-                    <table class="table table-hover" >
-                        <tbody id="mods" ></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div id="settings" hidden>
-                <h4 class="text-center mt-0 mb-0 bg-success pt-2 pb-2">Settings</h4>
-                <div class="wrexdiv" style="overflow-y: scroll;"></div>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                    <h1>stuff</h1><br><br>
-                </div>
-            </div>
-            
-        </div>
-
-    </div>
-</body>
-<script src="../renderer.js"></script>
-<script src="../js/titlebar.js"></script>
-<script src="../js/scripts.js"></script>
-<script>
-    $(".wrexdiv").height($(this).height()-105)
-
-    $( window ).resize(function() {
-        $(".wrexdiv").height($(this).height()-105)
-    });
-</script>
 </html>

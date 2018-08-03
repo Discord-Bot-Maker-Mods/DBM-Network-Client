@@ -6339,27 +6339,31 @@ body {
 
 #title-bar {
   -webkit-app-region: drag;
-  height: 40px;
+  height: 35px;
   text-align: center;
-  line-height: 40px;
+  line-height: 35px;
   vertical-align: middle;
   background-color: #151515;
   padding: 0;
   margin: 0;
   width: 100%; }
 
-#title-bar-btns {
-  position: absolute;
-  -webkit-app-region: no-drag;
-  top: -2px;
-  right: 6px; }
-
 .title-btn {
-  width: 49px;
-  height: 29px;
-  -webkit-text-stroke: 1.25px;
-  padding-top: 2px;
-  padding-bottom: 2px; }
+  width: 50px;
+  height: 35px;
+  background: transparent;
+  border: 0;
+  color: #ced4da;
+  -webkit-app-region: no-drag;
+  -webkit-text-stroke: 1.25px; }
+  .title-btn:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer; }
+    .title-btn:hover#close-btn {
+      background: #cc0000; }
+  .title-btn:focus {
+    outline: 0; }
 
 .sidebar {
   padding: 0;
@@ -6386,6 +6390,9 @@ body {
   .sidebar .icon-container-row {
     margin: 0px;
     padding-left: 0px; }
+
+.display-area:hover {
+  background: #fff; }
 
 ::-webkit-scrollbar {
   width: 10px; }

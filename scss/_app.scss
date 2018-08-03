@@ -33,9 +33,9 @@ body {
 
 #title-bar {
   -webkit-app-region: drag;
-  height: 40px;
+  height: 35px;
   text-align: center;
-  line-height: 40px;
+  line-height: 35px;
   vertical-align: middle;
   background-color: darken($gray-900, 5);
   padding: 0;
@@ -43,19 +43,25 @@ body {
   width: 100%;
 }
 
-#title-bar-btns {
-  position: absolute;
-  -webkit-app-region: no-drag;
-  top: -2px;
-  right: 6px;
-}
-
 .title-btn {
-  width: 49px;
-  height: 29px;
+  width: 50px;
+  height: 35px;
+  background: transparent;
+  border: 0;
+  color: $gray-400;
+  -webkit-app-region: no-drag;
   -webkit-text-stroke: 1.25px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  &:hover {
+    color: $white;
+    background: rgba($black, 0.6);
+    cursor: pointer;
+    &#close-btn {
+      background: darken(red, 10);
+    }
+  }
+  &:focus {
+    outline: 0;
+  }
 }
 
 .sidebar {
@@ -96,6 +102,12 @@ body {
   .icon-container-row {
     margin: 0px;
     padding-left: 0px;
+  }
+}
+
+.display-area {
+  &:hover {
+    background: $white;
   }
 }
 

@@ -5,20 +5,20 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>DBM Network Client</title>
-      <link rel="stylesheet" href="../css/index.css">
       <link rel="stylesheet" type="text/css" href="../lib/datatables/datatables.min.css"/>
       <link rel="stylesheet" href="../css/bootstrap.css">     
-      <link rel="stylesheet" href="../node_modules/open-iconic/font/css/open-iconic-bootstrap.css">         
+      <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">         
 
    </head>
    <script src="../renderer.js"></script>
    <body>
       <div id="main" class="app">
-         <% include titlebar %>       
-         <div class="row" id="mainrow">                
-            <% include sidebar %>     
-                 
-            <div class="col displayarea" style="user-select: none;">
+         <% include titlebar %>
+         <div class="row content-row">
+            <div class="col-xs">
+                <% include sidebar %>
+            </div>   
+            <div class="col" style="user-select: none;">
                 <% include ../modes/home %> 
                 <% include ../modes/mods/mods %> 
                 <% include ../modes/dataFiles %> 

@@ -1,0 +1,5 @@
+.right-col {
+  // 100% of viewport height minus 40px to account for the titlebar height.
+  height: calc(100vh - 40px);
+  overflow-y: auto;
+}

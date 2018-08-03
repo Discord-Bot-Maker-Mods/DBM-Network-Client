@@ -6313,6 +6313,100 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #444; } }
 
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+.app {
+  /* Disable text selection, or your app will feel like a web page */
+  -webkit-user-select: none;
+  /* Make sure this matches the native window background color that you pass to
+     * electron.BrowserWindow({...}), otherwise your app startup will look janky. */
+  background: #282828;
+  /* Smoother startup */
+  animation: fadein 0.7s; }
+
+body {
+  overflow: hidden; }
+
+.content-row {
+  margin: 0; }
+
+#title-bar {
+  -webkit-app-region: drag;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  vertical-align: middle;
+  background-color: #151515;
+  padding: 0;
+  margin: 0;
+  width: 100%; }
+
+.title-btn {
+  width: 50px;
+  height: 35px;
+  background: transparent;
+  border: 0;
+  color: #ced4da;
+  -webkit-app-region: no-drag;
+  -webkit-text-stroke: 1px; }
+  .title-btn:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer; }
+    .title-btn:hover#close-btn {
+      background: #cc0000; }
+  .title-btn:focus {
+    outline: 0; }
+
+.sidebar {
+  padding: 0;
+  width: 50px;
+  height: 100vh;
+  text-align: center; }
+  .sidebar .icon {
+    margin-left: 0;
+    margin-right: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  .sidebar span {
+    font-size: 30px; }
+  .sidebar .col {
+    padding: 0; }
+  .sidebar p {
+    margin: 0 !important; }
+  .sidebar .icon-container-col {
+    color: #ced4da;
+    margin: 0px;
+    padding-left: 0px; }
+    .sidebar .icon-container-col:hover, .sidebar .icon-container-col.active {
+      color: #fff; }
+  .sidebar .icon-container-row {
+    margin: 0px;
+    padding-left: 0px; }
+
+.display-area {
+  height: 100vh !important; }
+
+::-webkit-scrollbar {
+  width: 10px; }
+
+::-webkit-scrollbar-track {
+  background: #999; }
+
+::-webkit-scrollbar-thumb {
+  background: #444; }
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fff; }
+
+.right-col {
+  height: calc(100vh - 40px);
+  overflow-y: auto; }
+
 .bg-primary .navbar-nav .active > .nav-link {
   color: #00bc8c !important; }
 

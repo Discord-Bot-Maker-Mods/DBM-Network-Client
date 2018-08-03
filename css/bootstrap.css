@@ -6322,9 +6322,6 @@ a.text-dark:hover, a.text-dark:focus {
 .app {
   /* Disable text selection, or your app will feel like a web page */
   -webkit-user-select: none;
-  /* Cover the whole window */
-  height: 100%;
-  width: 100vw;
   /* Make sure this matches the native window background color that you pass to
      * electron.BrowserWindow({...}), otherwise your app startup will look janky. */
   background: #282828;
@@ -6355,7 +6352,7 @@ body {
   border: 0;
   color: #ced4da;
   -webkit-app-region: no-drag;
-  -webkit-text-stroke: 1.25px; }
+  -webkit-text-stroke: 1px; }
   .title-btn:hover {
     color: #fff;
     background: rgba(0, 0, 0, 0.6);
@@ -6391,6 +6388,9 @@ body {
     margin: 0px;
     padding-left: 0px; }
 
+.display-area {
+  height: 100vh !important; }
+
 ::-webkit-scrollbar {
   width: 10px; }
 
@@ -6402,6 +6402,10 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #fff; }
+
+.right-col {
+  height: calc(100vh - 40px);
+  overflow-y: auto; }
 
 .bg-primary .navbar-nav .active > .nav-link {
   color: #00bc8c !important; }

@@ -7,13 +7,10 @@
   }
 }
 
+// This wil affect the entire app, only left it here for posterity's sake
 .app {
   /* Disable text selection, or your app will feel like a web page */
   -webkit-user-select: none;
-
-  /* Cover the whole window */
-  height: 100%;
-  width: 100vw;
 
   /* Make sure this matches the native window background color that you pass to
      * electron.BrowserWindow({...}), otherwise your app startup will look janky. */
@@ -27,6 +24,7 @@ body {
   overflow: hidden;
 }
 
+// Overrides bootstrap's natural -15px margin in rows
 .content-row {
   margin: 0;
 }
@@ -50,7 +48,7 @@ body {
   border: 0;
   color: $gray-400;
   -webkit-app-region: no-drag;
-  -webkit-text-stroke: 1.25px;
+  -webkit-text-stroke: 1px;
   &:hover {
     color: $white;
     background: rgba($black, 0.6);
@@ -103,6 +101,10 @@ body {
     margin: 0px;
     padding-left: 0px;
   }
+}
+
+.display-area {
+  height: 100vh !important;
 }
 
 ::-webkit-scrollbar {

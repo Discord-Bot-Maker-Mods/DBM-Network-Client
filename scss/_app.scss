@@ -82,16 +82,21 @@ body {
   p {
     margin: 0 !important;
   }
-}
 
-.icon-container-row {
-  margin: 0px;
-  padding-left: 0px;
-}
+  .icon-container-col {
+    color: $gray-400;
+    &:hover,
+    &.active {
+      color: $white;
+    }
+    margin: 0px;
+    padding-left: 0px;
+  }
 
-.icon-container-col {
-  margin: 0px;
-  padding-left: 0px;
+  .icon-container-row {
+    margin: 0px;
+    padding-left: 0px;
+  }
 }
 
 ::-webkit-scrollbar {

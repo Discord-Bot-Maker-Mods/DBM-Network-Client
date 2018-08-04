@@ -1,15 +1,19 @@
 <div class="mode-page" id="mods-mode" name="Mods Management">
-    <table id="modstable" class="table table-hover " cellspacing="0">
-        <thead >
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Section</th>
-                <th scope="col">Author</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody id="mods" >
+    <table>
+        <tbody>
+        <% var psize = 10;
+        for (i = 0; i < psize; i++) { %>
+            <% include partial-mods %>
+        <% } %>
         </tbody>
     </table>
 </div>
 
+<script>
+    /* function append() {
+        var btn = document.createElement("DIV");
+        var t = document.createTextNode("CLICK ME");
+        btn.appendChild(t);
+        document.querySelector("#mods-mode").appendChild(btn);
+    } */
+</script>

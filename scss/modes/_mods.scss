@@ -1,0 +1,12 @@
+#mods-mode {
+  padding-top: 10px;
+  // 100% of viewport height minus 35px to account for the titlebar height.
+  height: $normalized-height;
+  overflow-y: auto;
+}
+
+.mod-display {
+  background: $gray-800;
+  height: 80px;
+  margin-bottom: 5px;
+}

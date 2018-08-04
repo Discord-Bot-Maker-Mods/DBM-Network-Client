@@ -1,0 +1,13 @@
+.left-col {
+  padding-top: 10px;
+  // 100% of viewport height minus 35px to account for the titlebar height.
+  height: $normalized-height;
+  overflow-y: auto;
+}
+
+.right-col {
+  padding-top: 10px;
+  // 100% of viewport height minus 35px to account for the titlebar height.
+  height: $normalized-height;
+  overflow-y: auto;
+}

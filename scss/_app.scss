@@ -104,7 +104,9 @@ body {
 }
 
 .display-area {
-  height: 100vh !important;
+  // 100% of viewport height minus 35px to account for the titlebar height.
+  height: $normalized-height;
+  padding: 0;
 }
 
 ::-webkit-scrollbar {

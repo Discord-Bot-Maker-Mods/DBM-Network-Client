@@ -39,6 +39,8 @@ $dark: $gray-500 !default;
 
 $yiq-contrasted-threshold: 175 !default;
 
+$normalized-height: calc(100vh - 35px);
+
 // Body
 
 $body-bg: $gray-900 !default;

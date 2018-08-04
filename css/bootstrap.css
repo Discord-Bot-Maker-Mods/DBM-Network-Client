@@ -6389,7 +6389,8 @@ body {
     padding-left: 0px; }
 
 .display-area {
-  height: 100vh !important; }
+  height: calc(100vh - 35px);
+  padding: 0; }
 
 ::-webkit-scrollbar {
   width: 10px; }
@@ -6403,8 +6404,64 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #fff; }
 
+.left-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
 .right-col {
-  height: calc(100vh - 40px);
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+#mods-mode {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+.mod-display {
+  background: #303030;
+  height: 80px;
+  margin-bottom: 5px; }
+
+.left-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+.right-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+.left-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+.right-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+.left-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+.right-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+.left-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
+  overflow-y: auto; }
+
+.right-col {
+  padding-top: 10px;
+  height: calc(100vh - 35px);
   overflow-y: auto; }
 
 .bg-primary .navbar-nav .active > .nav-link {

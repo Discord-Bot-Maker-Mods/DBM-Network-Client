@@ -44,11 +44,13 @@ This will start the development server allowing you to change files, and it will
   npm start
 ```
 
+### Styling
+Styling should only be done in the scss files! All changes to css/bootstrap.css are guaranteed to be rewritten
 
-## Contributing
-
-Just fork the repository, make some changes, and create a pull request!
-
+This will start the node-sass watcher and live compile your changes to all files in the scss folder
+```bash
+  npm sass
+```
 
 ## Contributing
 

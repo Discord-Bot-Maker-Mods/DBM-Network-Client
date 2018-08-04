@@ -4,6 +4,11 @@
 
 @import "app";
 
-@import "settings";
+@import "modes/home";
+@import "modes/mods";
+@import "modes/datafile";
+@import "modes/themes";
+@import "modes/settings";
+@import "modes/services";
 
 @import "bootswatch";

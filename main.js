@@ -34,12 +34,13 @@ let tray = null;
 app.on('ready', function(){
 
     splashWindow = new BrowserWindow({    
-        'width': 290,
-        'height': 290,
+				'width': 200,
+        'height': 320,
         frame: false, 
         show: false ,
         transparent: true,
-        center: true
+				center: true,
+				icon: './img/dbm-logo-interation4-nobg-small.png'
     });
 
     // load the splash page
@@ -47,8 +48,13 @@ app.on('ready', function(){
         pathname: path.join(__dirname,'ejs' ,'splash.ejs'),
         protocol: 'file',
         slashes: true
-    }));
-    splashWindow.show();
+		}));
+		
+		splashWindow.once('ready-to-show', function() {
+			splashWindow.show()
+		})
+
+
 
     if(!settings.get('hasRan')){
         settings.set('active_page', 'home-mode');
@@ -67,12 +73,12 @@ app.on('ready', function(){
     'height': mainWindowState.height,
     frame: false, 
     show: false ,
-    icon: 'img/icon.png'});
+    icon: './img/dbm-logo-interation4-nobg-small.png'});
 
 
     mainWindowState.manage(mainWindow);
 
-    tray = new Tray('img/icon.png');
+    tray = new Tray('img/dbm-logo-interation4-nobg.png');
     const contextMenu = Menu.buildFromTemplate(trayMenuTemplate);
 
     tray.on('click', () => {

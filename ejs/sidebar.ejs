@@ -51,7 +51,7 @@ const slide_speed = 275;
 $('.slider').each(function(i, obj) {          
       if(!$(this).hasClass('active')){
             $(this).find('p').slideUp(slide_speed,() =>{ $(this).data('slid', false);  });
-      }else{
+			}else{
             $(this).data('slid', true);
       }
 });
@@ -65,7 +65,14 @@ $('.slider').click(function(func) {
     
       $('.slider').each(function(i, obj) {        
             if($(this).hasClass('active')){
-                  $(this).find('p').slideUp(slide_speed,() =>{ $(this).data('slid', false);  });
+									$(this).find('p').slideUp(slide_speed,() =>{ 
+										$(this).data('slid', false);  
+										if($(this).hasClass('active')){
+											$(this).find('p').slideDown(slide_speed), () => {
+											$(this).data('slid', true);
+										}
+									}
+								});
             }
       });
 });

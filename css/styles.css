@@ -1,0 +1,9 @@
+
+body {
+	margin: 0;
+	background-color: #333;
+	cursor: pointer;
+	-webkit-app-region: drag;
+	width: 100vh;
+	height: 100vh;
+}

@@ -1,0 +1,20 @@
+{
+	"app_version": "1.0.0",
+	"mods_version": "1.9.3",
+	"themes_version": "1.0.5",
+	"app_info": [
+		"Splash Screen got a makeover.",
+		"Added 'Latest Info' in the home page.",
+		"Added when you click the active icon in sidebar it slides down then back up.",
+		"Added new icons.",
+		"Added a 'data' folder for random json files.",
+		"Added 'data/home_info.json' its holding the info being displayed here."
+	],
+	"mod_info": [
+		"Nothing to show yet."
+		
+	],
+	"theme_info": [
+		"Nothing to show yet."
+	]
+}

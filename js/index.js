@@ -12,8 +12,7 @@
 
 		app_info.appendChild(li);
 	});
-	
-	
+
 	document.getElementById('mods_version').innerText = info.mods_version;
 	
 	const mod_info = document.getElementById('mods_info');
@@ -29,15 +28,12 @@
 
 	const theme_info = document.getElementById('themes_info');
 	info.theme_info.forEach(item => {
-		
+
 		const li = document.createElement('li');
 		li.innerText = item;
 
 		theme_info.appendChild(li);
 	});
-
-
-
  }
 
  setHomeInfo();

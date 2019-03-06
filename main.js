@@ -103,7 +103,7 @@ app.on('ready', function() {
         });
 
         autoUpdater.on('download-progress', (progressObj) => {
-            sendStatusToWindow(`Downloading update... [${progressObj.percent}%]`);
+            sendStatusToWindow(`Downloading update... [${progressObj.percent.toString().split(".")[0]}%]`);
         });
 
         autoUpdater.on('update-downloaded', (info) => {

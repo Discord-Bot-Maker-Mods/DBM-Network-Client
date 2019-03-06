@@ -1,0 +1,166 @@
+<body oncontextmenu="return false;">
+    <div id="testet"></div>
+    <p id="textt">DBM Network Client</p>
+    <img id="logo"  src="./icon.png" draggable="false">
+    <img id="logo_blank"  src="./icon_blank.png" draggable="false">
+</body>
+
+<style>
+#testet {
+  border-radius: 30px;
+  width: auto;
+  background-color: #444444;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+body {
+opacity: 0;
+overflow: hidden;
+
+animation: anim1 7s;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
+animation-delay: 3s;
+animation-timing-function: ease;
+}
+@keyframes anim1 {
+0%{opacity: 0;}
+2%{opacity: 1;}
+98%{opacity: 1;}
+100%{opacity: 0;}
+}
+
+@font-face {
+font-family: Uni Sans Heavy;
+src: url("./Uni_Sans_Heavy.otf") format("opentype");
+}
+#textt {
+    font-size: 67px;
+    user-select: none;
+    cursor: default;
+    font-family: Uni Sans Heavy;
+    color: #ebebeb;
+    position : absolute;
+    margin-top: -40px;
+    margin-left: -230px;
+    opacity: 0;
+    white-space: nowrap;
+    top: 50%;
+    left: 50%;
+    text-shadow: 0px 2px 11px #000000;
+    
+    animation: anim2 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 6.2s;
+    animation-timing-function: ease;
+}
+
+@keyframes anim2 {
+from{opacity: 0;}
+to{opacity: 1;}
+}
+
+#logo {
+    width: 200px;
+    height: 200px;
+    cursor: default;
+    user-select: none;
+    animation: anim3 7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 4s;
+    animation-timing-function: ease;
+    position : absolute;
+    opacity: 0;
+    z-index: 2;
+
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+@keyframes anim3 {
+    0%{
+        opacity: 0;
+        right: 0px;
+    }
+    10%{
+        opacity: 1;
+        right: 0px;
+    }
+    30%{
+        opacity: 1;
+        right: 0px;
+    }
+    40%{
+        opacity: 1;
+        right: 750px;
+    }
+    80%{
+        opacity: 1;
+        right: 750px;
+    }
+    100%{
+        opacity: 1;
+        right: 750px;
+    }
+}
+
+#logo_blank {
+    width: 200px;
+    height: 200px;
+    cursor: default;
+    user-select: none;
+    animation: anim4 7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    animation-delay: 4s;
+    position : absolute;
+    opacity: 0;
+    z-index: 2;
+
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+@keyframes anim4 {
+    0%{
+        opacity: 0;
+        right: 0px;
+    }
+    10%{
+        opacity: 1;
+        right: 0px;
+    }
+    30%{
+        opacity: 1;
+        right: 0px;
+        transform: rotate(0deg);
+    }
+    40%{
+        opacity: 1;
+        right: 750px;
+    }
+    50%{
+        opacity: 1;
+        right: 750px;
+        transform: rotate(-450deg);
+    }
+    100%{
+        opacity: 1;
+        right: 750px;
+        transform: rotate(-450deg);
+    }
+}
+
+
+</style>

@@ -1,0 +1,139 @@
+<div class="SlideMenu" style="user-select: none;">
+    <div style="position: relative; top: 5px;">
+        <div>
+            <img src="../splash/icon.png" style="width: 70px; position: relative; top: 15px; left: 3px;" draggable="false" onContextMenu="return false;">
+            <img id="logo" src="../splash/icon_blank.png" style="width: 65; position: absolute; top: 18px; left: 6px;" draggable="false" onContextMenu="return false;">
+        </div>
+        <p style="color: #f2f2f2; font-family: Uni Sans Heavy; position: relative; left: 77px; top: -43px;">DBM Network Client</p>
+    </div>
+    <div class="SlideMenu_Button" onclick="ModsTabClick()">
+        <p id="icon1" style="color: #f2f2f2; text-align: center; vertical-align: middle; line-height: 70px; font-family: Arial; font-size: 20px;">Mods</p>
+    </div>
+	<!--<div class="SlideMenu_Button">
+        <p id="icon1" style="color: #f2f2f2; text-align: center; vertical-align: middle; line-height: 70px; font-family: Arial; font-size: 20px;">Themes</p>
+    </div>-->
+    <div class="SlideMenu_Button" onclick="SettingsTabClick()">
+        <p id="icon2" style="color: #f2f2f2; text-align: center; vertical-align: middle; line-height: 70px; font-family: Arial; font-size: 20px;">Settings</p>
+    </div>
+    <div class="SlideMenu_Button" onclick="ChangeLogTabClick()">
+        <p id="icon3" style="color: #f2f2f2; text-align: center; vertical-align: middle; line-height: 70px; font-family: Arial; font-size: 20px;">Changelog</p>
+    </div>
+    <p style="color: #f2f2f2; position: fixed; bottom: -10; left: 5; line-height: 1.4; font-family: Arial; opacity: .3; font-size: smaller">© DBM Network<br><span id="AppVersion"></span> <span id="ElectronUPStatus"></span></p>
+</div>
+
+<script>
+    const {ipcRenderer} = require('electron');
+    var $ = require('jquery');
+    var blockerClick = false;
+
+    function ModsTabClick() {
+        if(blockerClick === false) {
+            blockerClick = true;
+            $('#SettingsWindow').fadeOut(200);
+            $('#ChangeLogWindow').fadeOut(200);
+            setTimeout(() => {
+                $('#ModsWindow').fadeIn(200);
+                ipcRenderer.send('mode:changed', 'Mods');
+                blockerClick = false;
+            }, 200);
+        }
+    }
+
+    function SettingsTabClick() {
+        if(blockerClick === false) {
+            blockerClick = true;
+            $('#ModsWindow').fadeOut(200);
+            $('#ChangeLogWindow').fadeOut(200);
+            setTimeout(() => {
+                $('#SettingsWindow').fadeIn(200);
+                ipcRenderer.send('mode:changed', 'Settings');
+                blockerClick = false;
+            }, 200);
+        }
+    }
+
+    function ChangeLogTabClick() {
+        if(blockerClick === false) {
+            blockerClick = true;
+            $('#ModsWindow').fadeOut(200);
+            $('#SettingsWindow').fadeOut(200);
+            setTimeout(() => {
+                $('#ChangeLogWindow').fadeIn(200);
+                ipcRenderer.send('mode:changed', 'Changelog');
+                blockerClick = false;
+            }, 200);
+        }
+    }
+
+    $('#AppVersion').html(require('electron').remote.app.getVersion());
+
+    //------------Electron Updater Stuff------------
+	ipcRenderer.on('ElectronUpdaterMES', function(event, text) {
+        $('#ElectronUPStatus').html("- " + text);
+	});
+    //----------------------------------------------
+</script>
+
+<style>
+@font-face {
+    font-family: Uni Sans Heavy;
+    src: url("../splash/Uni_Sans_Heavy.otf") format("opentype");
+}
+
+body {
+    margin: 0%
+}
+    
+.SlideMenu {
+    background-color: #32363d;
+    width: 250px;
+    height: 100%;
+}
+    
+.SlideMenu_Button {
+    background-color: #41464f;
+    width: 100%;
+    height: 70px;
+    transition: all .2s;
+    position: relative;
+    top: 10px;
+    display:block;
+	cursor: pointer;
+}
+    
+.SlideMenu_Button:hover {
+    background-color: #2c3035;
+}
+    
+.SlideMenu_Button:active { 
+      background-color: #212428;
+}
+    
+#icon1::before {
+    content:"\f0ad \00a0 \00a0";
+    font-family: "FontAwesome";
+}
+    
+#icon2::before {
+    content:"\f013 \00a0 \00a0";
+    font-family: "FontAwesome";
+}
+    
+#icon3::before {
+    content:"\f05a \00a0 \00a0";
+    font-family: "FontAwesome";
+}
+
+#logo {
+    animation: rotation 10s linear 0s infinite;
+}
+	
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+</style>

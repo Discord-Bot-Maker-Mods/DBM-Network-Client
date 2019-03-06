@@ -54,7 +54,10 @@ function MenuScreen() {
         frame: true,
         show: false,
         transparent: false,
-        icon: './app.ico'
+				icon: './app.ico',
+				webPreferences : {
+					nodeIntegration: true
+				}
     });
     
     menuScreen.loadFile('./menu/menu.ejs');

@@ -42,7 +42,7 @@ function ModsInstallClick() {
     $('#ModsConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Installing DBM Mods [${$('#ModsBranchSelect option:selected').text()}]...<br>`);
     $('.Dbutton_BlockStuff').prop('disabled', true);
 
-    repo({repo: "Discord-Bot-Maker-Mods/DBM-Mods", branch: branch}, obj.DBM_Path + "\\actions", 'actions')
+    repo({repo: "Discord-Bot-Maker-Mods/DBM-Mods", branch: branch}, path.join(obj.DBM_Path, "actions"), 'actions')
     .then(() => {
         $('#ModsConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - DBM Mods installed successfully! (${((new Date() - start)*10**-3).toFixed(3)}s)<br>`);
         $('.Dbutton_BlockStuff').prop('disabled', false);
@@ -61,9 +61,9 @@ function ModsUninstallClick() {
     var processC1 = 0;
     var processC2 = 0;
 
-    fs.readdirSync(obj.DBM_Path + "\\actions").forEach(function(file, index, arr) {
+    fs.readdirSync(path.join(obj.DBM_Path, "actions")).forEach(function(file, index, arr) {
         if(file.match(/MOD\.js/i)) {
-            fs.unlinkSync(path.join(obj.DBM_Path + "\\actions", file));
+            fs.unlinkSync(path.join(obj.DBM_Path, "actions", file));
             processC2++;
         }
         processC1++;

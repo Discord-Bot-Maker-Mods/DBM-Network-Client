@@ -1,0 +1,26 @@
+<div style="position: fixed; top: 0; left: 0; height: 100%;"> <!-- Sidebar Stuff -->
+    <% include ../menu/sidebar %>
+</div>
+
+<div style="margin-left: 250px;"> <!-- hm.. "Some" Stuff -->
+    <div id="ModsWindow">
+    <% include ../menu/mods/mods %>
+    </div>
+    <div id="SettingsWindow">
+        <% include ../menu/settings/settings %>
+    </div>
+    <div id="ChangeLogWindow">
+        <% include ../menu/changelog/changelog %>
+    </div>
+</div>
+
+<style>
+body {
+    overflow: hidden;
+    background-color: #242424;
+}
+</style>
+
+<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+<script>window.$ = window.jQuery = require('jquery');</script>
+<script>$('#SettingsWindow').fadeOut(0); $('#ChangeLogWindow').fadeOut(0);</script>

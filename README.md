@@ -17,7 +17,7 @@
 
 | User | Helps with |
 |-|-|
-|MrGold|App Creation, Design, Code & Portuguese translation|
+|MrGold|App Creation, Design & Code|
 |Danno3817|App Creation & Fixes|
 
 ###### If you want to contribute, fork this repository and create a pull request with your changes

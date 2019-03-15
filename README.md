@@ -1,5 +1,14 @@
-# DBM Network Client
-<img src="https://cdn.discordapp.com/attachments/537378885222924300/544285333534277654/icon_dark.png" width="150">
+<div align="center">
+  <br />
+  <p>
+    <a href="https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client"><img src="https://cdn.discordapp.com/attachments/485742173036216337/556246092602409006/banner.png" width="546" alt="DBM Network Client" /></a>
+  </p>
+  <br />
+  <p>
+    <a href=""><img src="https://img.shields.io/github/contributors/Discord-Bot-Maker-Mods/DBM-Network-Client.svg" alt="Contributors Counter" /></a>
+    <a href=""><img src="https://img.shields.io/github/downloads/Discord-Bot-Maker-Mods/DBM-Network-Client/total.svg" alt="Downloads Counter" /></a>
+    <a href=""><img src="https://img.shields.io/github/license/Discord-Bot-Maker-Mods/DBM-Network-Client.svg" alt="License" /></a>
+</div>
 
 # Features 📃
 - [x] Install/Uninstall Mods<br>
@@ -11,6 +20,7 @@
 - [ ] Install/Uninstall/Apply Themes<br>
 - [ ] Install/Uninstall/Apply Translations<br>
 - [ ] Home for News<br>
+- [ ] Language option<br>
 ###### and others features...
 
 # Contributors 🤝

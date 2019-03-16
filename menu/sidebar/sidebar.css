@@ -1,0 +1,66 @@
+@font-face {
+    font-family: Uni Sans Heavy;
+    src: url("../../splash/Uni_Sans_Heavy.otf") format("opentype");
+}
+
+body {
+    margin: 0%
+}
+    
+.SlideMenu {
+    background-color: #32363d;
+    width: 250px;
+    height: 100%;
+}
+    
+.SlideMenu_Button {
+    background-color: #41464f;
+    width: 100%;
+    height: 70px;
+    transition: all .2s;
+    position: relative;
+    top: 10px;
+    display:block;
+	cursor: pointer;
+}
+    
+.SlideMenu_Button:hover {
+    background-color: #2c3035;
+}
+    
+.SlideMenu_Button:active { 
+      background-color: #212428;
+}
+    
+#icon1::before {
+    content:"\f0ad \00a0 \00a0";
+    font-family: "FontAwesome";
+}
+
+#icon2::before {
+    content:"\f126 \00a0 \00a0";
+    font-family: "FontAwesome";
+}
+    
+#icon3::before {
+    content:"\f013 \00a0 \00a0";
+    font-family: "FontAwesome";
+}
+    
+#icon4::before {
+    content:"\f05a \00a0 \00a0";
+    font-family: "FontAwesome";
+}
+
+#logo {
+    animation: rotation 10s linear 0s infinite;
+}
+	
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}

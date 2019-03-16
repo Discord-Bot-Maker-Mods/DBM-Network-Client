@@ -1,0 +1,26 @@
+<div class="SlideMenu" style="user-select: none;">
+    <div style="position: relative; top: 5px;">
+        <div>
+            <img src="../../splash/icon.png" style="width: 70px; position: relative; top: 15px; left: 3px;" draggable="false" onContextMenu="return false;">
+            <img id="logo" src="../../splash/icon_blank.png" style="width: 65; position: absolute; top: 18px; left: 6px;" draggable="false" onContextMenu="return false;">
+        </div>
+        <p style="color: #f2f2f2; font-family: Uni Sans Heavy; position: relative; left: 77px; top: -43px;">DBM Network Client</p>
+    </div>
+    <div class="SlideMenu_Button" id="SlideBarButtonMods" onclick="ModsTabClick()">
+        <p id="icon1" style="color: #f2f2f2; text-align: center; vertical-align: middle; line-height: 70px; font-family: Arial; font-size: 20px;">Mods</p>
+    </div>
+	<div class="SlideMenu_Button" onclick="BotTabClick()">
+        <p id="icon2" style="color: #f2f2f2; text-align: center; vertical-align: middle; line-height: 70px; font-family: Arial; font-size: 20px;">Bot</p>
+    </div>
+    <div class="SlideMenu_Button" onclick="SettingsTabClick()">
+        <p id="icon3" style="color: #f2f2f2; text-align: center; vertical-align: middle; line-height: 70px; font-family: Arial; font-size: 20px;">Settings</p>
+    </div>
+    <div class="SlideMenu_Button" onclick="ChangelogTabClick()">
+        <p id="icon4" style="color: #f2f2f2; text-align: center; vertical-align: middle; line-height: 70px; font-family: Arial; font-size: 20px;">Changelog</p>
+    </div>
+    <p style="color: #f2f2f2; position: fixed; bottom: -10; left: 5; line-height: 1.4; font-family: Arial; opacity: .3; font-size: smaller">© DBM Network<br><span id="AppVersion"></span> <span id="ElectronUPStatus"></span></p>
+</div>
+
+<script src="../sidebar/sidebar.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../sidebar/sidebar.css">

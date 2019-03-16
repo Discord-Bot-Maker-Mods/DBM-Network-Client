@@ -1,0 +1,34 @@
+<script src="menu.js"></script>
+
+<link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css">
+
+<div style="position: fixed; top: 0; left: 0; height: 100%;"> <!-- Sidebar Stuff -->
+    <% include ../../menu/sidebar/sidebar %>
+</div>
+
+<div style="margin-left: 250px;">
+    <div id="ModsWindow"> <!-- Mods Stuff -->
+    <% include ../../menu/mods/mods %>
+    </div>
+    <div id="BotWindow"> <!-- Bot Stuff -->
+        <% include ../../menu/bot/bot %>
+    </div>
+    <div id="ChangelogWindow"> <!-- Changelog Stuff -->
+        <% include ../../menu/changelog/changelog %>
+    </div>
+    <div id="SettingsWindow"> <!-- Settings Stuff -->
+        <% include ../../menu/settings/settings %>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="menu.css">
+
+<script>
+$('#BotWindow').fadeOut(0);
+$('#SettingsWindow').fadeOut(0);
+$('#ChangelogWindow').fadeOut(0);
+
+$('#ModsConsoleLog').slideUp(0);
+$('#BotConsoleLog').slideUp(0);
+</script>
+<!--<script src="./translation.js"></script>-->

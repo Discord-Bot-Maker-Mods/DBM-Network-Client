@@ -1,0 +1,47 @@
+.Dbutton {
+    padding-left: 17; 
+    padding-right: 17;
+    border: none;
+    outline:0;
+    background-color: #444444;
+    
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+.Dbutton:hover {
+        background-color: #383838;
+}
+.Dbutton:active {
+        background-color: #303030;
+}
+.Dbutton:disabled, .Dbutton:disabled:hover, .Dbutton:disabled:active {
+    cursor: not-allowed;
+    background-color: #444444;
+    opacity: .5;
+}
+    
+.seeLimitss {
+    border-style: solid;
+    border-width: 5px;
+    border-color: green;
+}
+
+.buttonBlocked {
+    cursor: not-allowed;
+}
+    
+body {
+    background-color: #212121;
+    margin-left: 10;
+    margin-right: 10;
+}
+
+* {
+    font-family: Arial;
+    color: #f2f2f2;
+    user-select: none;
+}

@@ -39,14 +39,7 @@
       "output": "build"
     },
     "win": {
-      "target": "nsis",
-      "allowToChangeInstallationDirectory": false,
-      "perMachine": false,
-      "oneClick": true,
-      "installerIcon": "./app.ico",
-      "uninstallerIcon": "./app.ico",
-      "artifactName": "${productName} Setup.${ext}",
-      "uninstallDisplayName": "uninstall"
+      "target": "nsis"
     },
     "linux": {
       "target": "AppImage",
@@ -57,6 +50,15 @@
       "category": "Development",
       "executableName": "DBM Network Client",
       "artifactName": "${productName}.${ext}"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": false,
+      "perMachine": false,
+      "oneClick": true,
+      "installerIcon": "./app.ico",
+      "uninstallerIcon": "./app.ico",
+      "artifactName": "${productName} Setup.${ext}",
+      "uninstallDisplayName": "uninstall"
     }
   }
 }

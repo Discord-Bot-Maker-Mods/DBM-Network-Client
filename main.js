@@ -6,6 +6,13 @@ var path = require('path');
 var ejs = require('ejs-electron');
 var fs = require('fs');
 
+let result
+if (process.platform === 'win32') {
+    result = path.join(__dirname, "app.ico")
+} else if (process.platform === 'linux') {
+    result = path.join(__dirname, "./app.png")
+}
+
 var {app, BrowserWindow, ipcMain} = electron;
 //-----------------------------------------------------------------------------------------------//
 
@@ -29,7 +36,7 @@ function SplashScreen() {
         transparent: true,
         movable: false,
         resizable: false,
-        icon: path.join(__dirname, "app.ico"),
+        icon: result,
         webPreferences : {
             nodeIntegration: true
         }
@@ -51,6 +58,9 @@ function SplashScreen() {
 let menuScreen = null;
 
 function MenuScreen() {
+    let bounds = electron.screen.getPrimaryDisplay().bounds;
+    let x = bounds.x + ((bounds.width - 1050) / 2);
+    let y = bounds.y + ((bounds.height - 650) / 2);
     menuScreen = new BrowserWindow({
         'minWidth': 1050,
         'minHeight': 650,
@@ -60,13 +70,15 @@ function MenuScreen() {
         frame: true,
         show: false,
         transparent: false,
-        icon: path.join(__dirname, "app.ico"),
+        icon: result,
         webPreferences : {
             nodeIntegration: true
         }
     });
     
     menuScreen.loadFile(path.join(__dirname, "menu", "menu", "menu.ejs"));
+
+    menuScreen.webContents.openDevTools()
 
     menuScreen.on('closed', () => {
         menuScreen = null;

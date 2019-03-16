@@ -24,11 +24,23 @@
 <link rel="stylesheet" type="text/css" href="menu.css">
 
 <script>
-$('#BotWindow').fadeOut(0);
 $('#SettingsWindow').fadeOut(0);
 $('#ChangelogWindow').fadeOut(0);
 
 $('#ModsConsoleLog').slideUp(0);
 $('#BotConsoleLog').slideUp(0);
+
+
+
+// Check if OS is Windows. If it's false, hides some features about DBM... DBM only supports Windows lol
+if(process.platform === "win32") {
+    $('#BotWindow').fadeOut(0);
+} else {
+    $('#SlideBarButtonMods').hide();
+    $('#ModsWindow').hide();
+    $('#SettingsDBMPathDiv').hide();
+    $('#BotDBMCDAFDiv').hide();
+}
+//-----------------------------------------------------------------------------------------------//
 </script>
 <!--<script src="./translation.js"></script>-->

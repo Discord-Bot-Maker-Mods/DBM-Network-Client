@@ -32,7 +32,7 @@ function BotStartClick() {
     }
     //-----------------------------------------------------------------------------------------------//
 
-    const grep = exec(`start cmd.exe /k "cd "${obj.Bot_Path}" && node bot.js"`);
+    const grep = process.platform === "win32" ? exec(`start cmd.exe /k "cd "${obj.Bot_Path}" && node bot.js"`) : exec(`gnome-terminal --command="bash -c 'cd ${(obj.Bot_Path).replace(/\ /g, "\\ ")}; node bot.js; ls; $SHELL'"`);
     $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Bot Started\n`);
 
     if(process.platform === "win32") { // Linux doesn't detect this...

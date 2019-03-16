@@ -11,17 +11,6 @@ var $ = jQuery = require('jquery');
 
 
 
-// Check if OS is Linux. If it's true, hides some features about DBM.. DBM doesn't support Linux lol
-if(process.platform === "linux") {
-    $('#SlideBarButtonMods').hide();
-    $('#ModsWindow').hide();
-    $('#SettingsDBMPathDiv').hide();
-    $('#BotDBMCDAFDiv').hide();
-}
-//-----------------------------------------------------------------------------------------------//
-
-
-
 // Check if backups folder exists----------------------------------------------------------------//
 var BackupsPath = path.join(require('electron').remote.app.getPath('userData'), "backups");
 if(fse.existsSync(BackupsPath) == false) {

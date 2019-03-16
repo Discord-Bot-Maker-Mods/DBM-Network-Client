@@ -55,7 +55,7 @@
         </select>
         <button class="Dbutton" style="height: 35px; line-height: 35px; margin-left: 10;" onclick="BotBackupSelectOnChange(); $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Backups set to: ${$('#BotBackupSelect').val() == 1 ? $('#BotBackupSelect option:selected').text() : $('#BotBackupAmount').val() + ' ' + $('#BotBackupSelect option:selected').text()}\n`);">Save</button>
         <br>
-        <button class="Dbutton" style="height: 35px; line-height: 35px; margin-left: 10; margin-top: 5;" onclick='exec(`start "" "${BackupsPath}"`);'>Open Backups Folder</button>
+        <button class="Dbutton" style="height: 35px; line-height: 35px; margin-left: 10; margin-top: 5;" onclick='process.platform === "win32" ? exec(`start "" "${BackupsPath}"`) : exec(`nautilus ${BackupsPath}`)'>Open Backups Folder</button>
     </div>
 </div>
 

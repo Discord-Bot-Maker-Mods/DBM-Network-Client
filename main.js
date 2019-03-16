@@ -1,10 +1,9 @@
 //--------------------------------------------Modules--------------------------------------------//
 var electron = require('electron');
 var {autoUpdater} = require("electron-updater");
-//var url = require('url');
 var path = require('path');
-var ejs = require('ejs-electron');
-var fs = require('fs');
+var ejs = require('ejs-electron'); // keep this for the .ejs files work
+var fse = require('fs-extra');
 
 let result
 if (process.platform === 'win32') {
@@ -14,6 +13,61 @@ if (process.platform === 'win32') {
 }
 
 var {app, BrowserWindow, ipcMain} = electron;
+//-----------------------------------------------------------------------------------------------//
+
+
+
+// Check if backups folder exists----------------------------------------------------------------//
+var BackupsPath = path.join(app.getPath('userData'), "backups");
+if(fse.existsSync(BackupsPath) == false) {
+    fse.mkdirSync(BackupsPath);
+}
+//-----------------------------------------------------------------------------------------------//
+
+
+
+// Check if data folder exists-------------------------------------------------------------------//
+var DataPath = path.join(app.getPath('userData'), "data");
+if(fse.existsSync(DataPath) == false) {
+    fse.mkdirSync(DataPath);
+}
+//-----------------------------------------------------------------------------------------------//
+
+
+
+// Check if bot_data.json exists-----------------------------------------------------------------//
+var BotDataPath = path.join(DataPath, "bot_data.json");
+if(fse.existsSync(BotDataPath) == false) {
+    const obj_bot = JSON.stringify({
+        "Backup_Timer_Value": "",
+        "Backup_Timer_Type": "1"
+    });
+    fse.writeFileSync(BotDataPath, obj_bot);
+}
+//-----------------------------------------------------------------------------------------------//
+
+
+
+// Check if mods_data.json exists----------------------------------------------------------------//
+var ModsDataPath = path.join(DataPath, "mods_data.json");
+if(fse.existsSync(ModsDataPath) == false) {
+    const obj_mods = JSON.stringify({
+        "Alternative_Mods": false
+    });
+    fse.writeFileSync(ModsDataPath, obj_mods);
+}
+//-----------------------------------------------------------------------------------------------//
+
+// Check if data.json exists---------------------------------------------------------------------//
+var dataDataPath = path.join(DataPath, "data.json");
+if(fse.existsSync(dataDataPath) == false) {
+    const obj = JSON.stringify({
+        "DBM_Path": "",
+        "Bot_Path": "",
+        "Discord_RPC": true
+    });
+    fse.writeFileSync(dataDataPath, obj);
+}
 //-----------------------------------------------------------------------------------------------//
 
 
@@ -79,8 +133,6 @@ function MenuScreen() {
     });
     
     menuScreen.loadFile(path.join(__dirname, "menu", "menu", "menu.ejs"));
-
-    menuScreen.webContents.openDevTools()
 
     menuScreen.on('closed', () => {
         menuScreen = null;
@@ -151,7 +203,7 @@ app.on('ready', function() {
 
 
 //------------------------------------------Discord RPC------------------------------------------//
-var obj = JSON.parse(fs.readFileSync(path.join(app.getPath("userData"), "data", "data.json"), 'utf8'));
+var obj = JSON.parse(fse.readFileSync(path.join(app.getPath("userData"), "data", "data.json"), 'utf8'));
 
 function DiscordRPC() {
 if(obj.Discord_RPC == true) {

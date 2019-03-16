@@ -11,8 +11,8 @@
 </div>
 
 # Download 📂
-~~[Windows]()<br>
-[Linux]()~~
+[Windows](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.0.0/dbm-network-client-setup-1.0.0.exe)<br>
+[Linux](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.0.0/dbm-network-client-1.0.0-x86_64.AppImage)
 
 # Changelog ⏰
 1.0.0 - 16/03/2019
@@ -29,6 +29,14 @@ Added Bot tab to start and manage your Bot
     Added Backup Data Folder
 Added Settings tab to setting some App Settings
     Added a switch to enable/disable Discord RPC
+```
+
+### Fixed 📌
+```
+Fixed the error on start of the App about Data folder
+Fixed Main Window centered
+Fixed DBM stuff wasn't hide in Linux
+Fixed Start and Open Backups Folder buttons not working in Linux
 ```
 
 # Features 📃

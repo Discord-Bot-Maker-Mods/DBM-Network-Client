@@ -66,6 +66,8 @@ function MenuScreen() {
         'minHeight': 650,
         'width': 1050,
         'height': 650,
+        x: x,
+        y: y,
         title: "DBM Network Client",
         frame: true,
         show: false,

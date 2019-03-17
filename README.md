@@ -11,7 +11,8 @@
 </div>
 
 # Download 📂
-[Windows](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.0.0/dbm-network-client-setup-1.0.0.exe)<br>
+[Windows (64bit)](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.0.0/dbm-network-client-setup-1.0.0.exe)<br>
+`Windows (32bit)` coming soon<br>
 [Linux](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.0.0/dbm-network-client-1.0.0-x86_64.AppImage)
 
 # Changelog ⏰
@@ -59,5 +60,5 @@ Fixed Start and Open Backups Folder buttons not working in Linux
 |MrGold|App Creation, Design & Code|
 |Danno3817|App Creation & Fixes|
 
-###### If you want to contribute, fork this repository and create a pull request with your changes
+###### If you want to contribute, fork [this repository](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/tree/Alpha-1.0.0) and create a pull request with your changes
 ###### ~~If you want to help in translation, contact `Mr.Gold#6116`~~

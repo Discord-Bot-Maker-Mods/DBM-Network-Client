@@ -1,19 +1,14 @@
-@font-face {
-    font-family: Uni Sans Heavy;
-    src: url("../../splash/Uni_Sans_Heavy.otf") format("opentype");
-}
-
 body {
     margin: 0%
 }
     
-.SlideMenu {
+.SlidebarSlideMenu {
     background-color: #32363d;
     width: 250px;
     height: 100%;
 }
     
-.SlideMenu_Button {
+.SlidebarSlideMenu_Button {
     background-color: #41464f;
     width: 100%;
     height: 70px;
@@ -24,39 +19,89 @@ body {
 	cursor: pointer;
 }
     
-.SlideMenu_Button:hover {
+.SlidebarSlideMenu_Button:hover {
     background-color: #2c3035;
 }
     
-.SlideMenu_Button:active { 
-      background-color: #212428;
+.SlidebarSlideMenu_Button:active { 
+    background-color: #282127;
+}
+
+#SlidebarButtonMods, #SlidebarButtonBot, #SlidebarButtonSettings, #SlidebarButtonChangelog {
+    color: #f2f2f2;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 70px;
+    font-family: Arial;
+    font-size: 20px;
+}
+
+#SlidebarInfoBelow {
+    color: #f2f2f2;
+    position: fixed;
+    bottom: -10;
+    left: 5;
+    line-height: 1.4;
+    font-family: Arial;
+    opacity: .3;
+    font-size: smaller;
 }
     
-#icon1::before {
+#SlidebarButtonModsText::before {
     content:"\f0ad \00a0 \00a0";
     font-family: "FontAwesome";
 }
 
-#icon2::before {
+#SlidebarButtonBotText::before {
     content:"\f126 \00a0 \00a0";
     font-family: "FontAwesome";
 }
     
-#icon3::before {
+#SlidebarButtonSettingsText::before {
     content:"\f013 \00a0 \00a0";
     font-family: "FontAwesome";
 }
     
-#icon4::before {
+#SlidebarButtonChangelogText::before {
     content:"\f05a \00a0 \00a0";
     font-family: "FontAwesome";
 }
 
-#logo {
-    animation: rotation 10s linear 0s infinite;
+#SlidebarDivLogo {
+    position: relative;
+    top: 5px;
 }
-	
-@keyframes rotation {
+
+#SlidebarLogo {
+    width: 70px;
+    position: relative;
+    top: 15px;
+    left: 3px;
+}
+
+#SlidebarLogoBlank {
+    width: 65;
+    position: absolute;
+    top: 18px;
+    left: 6px;
+
+    animation: SlidebarLogoBlankAnim 10s linear 0s infinite;
+}
+
+#SlidebarLogoText {
+    color: #f2f2f2;
+    font-family: Uni Sans Heavy;
+    position: relative;
+    left: 77px;
+    top: -43px;
+}
+
+@font-face {
+    font-family: Uni Sans Heavy;
+    src: url("../../splash/Uni_Sans_Heavy.otf") format("opentype");
+}
+
+@keyframes SlidebarLogoBlankAnim {
 	from {
 		transform: rotate(0deg);
 	}

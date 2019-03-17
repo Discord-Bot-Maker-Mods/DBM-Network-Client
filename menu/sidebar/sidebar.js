@@ -65,10 +65,10 @@ function ChangelogTabClick() {
     }
 }
 
-$('#AppVersion').html(require('electron').remote.app.getVersion());
+$('#SlidebarAppVersion').html(require('electron').remote.app.getVersion());
 
 //------------Electron Updater Stuff------------
 ipcRenderer.on('ElectronUpdaterMES', function(event, text) {
-    $('#ElectronUPStatus').html("- " + text);
+    $('#SlidebarElectronUPStatus').html("- " + text);
 });
 //----------------------------------------------

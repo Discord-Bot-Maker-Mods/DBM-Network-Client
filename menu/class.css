@@ -1,0 +1,16 @@
+.HRFirst {
+    opacity: .3;
+}
+
+.HRSecond {
+    opacity: .1;
+}
+
+.SpanREQUIRED {
+    color: red;
+    opacity: 1;
+}
+
+.SpanNEEDSRESTART {
+    opacity: .5;
+}

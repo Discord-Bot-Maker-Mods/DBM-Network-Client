@@ -20,12 +20,6 @@
     margin-right: 15px;
 }
 
-#SettingsDivStuffBelow {
-    height: 80%;
-    overflow: auto;
-    overflow-x: hidden;
-}
-
 #SettingsDBMPathDivText, #SettingsBotPathDivText {
     margin-left: 10;
 }

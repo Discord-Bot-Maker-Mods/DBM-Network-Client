@@ -1,0 +1,46 @@
+#ChangelogDivTab {
+    width: 98.5%;
+    height: 55px;
+    margin-top: 13;
+}
+
+#ChangelogDivTabTitle {
+    position: absolute;
+    top:-40;
+    margin-left: 10;
+    font-size:50;
+}
+
+.ChangelogVersion {
+    font-size: 50px;
+}
+
+.ChangelogReleaseDate {
+    font-size: 15px;
+    opacity: .5;
+    margin-left: 5;
+}
+
+.ChangelogNew, .ChangelogFixed {
+    font-size: 30px;
+    margin-left: 5;
+}
+
+.ChangelogDiv {
+    border: none;
+    outline:0;
+    padding: 10;
+    line-height: 20px;
+    background-color: #191919;
+    text-align: left;
+    font-size: 15;
+    border-radius: 20px;
+    border: 5px solid #141414;
+}
+
+.ChangelogSubInfo {
+    padding-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    opacity: .8;
+}

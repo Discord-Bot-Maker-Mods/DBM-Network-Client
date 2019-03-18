@@ -101,5 +101,5 @@ function ModsUninstallClick() {
 
 function ModsAMClick() {
     obj_mods.Alternative_Mods = $('#ModsAM').prop('checked');
-    fse.writeFileSync('ModsDataPath', JSON.stringify(obj_mods));
+    fse.writeFileSync(ModsDataPath, JSON.stringify(obj_mods));
 }

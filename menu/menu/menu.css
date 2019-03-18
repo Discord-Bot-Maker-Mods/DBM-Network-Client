@@ -1,6 +1,8 @@
 body {
-    overflow: hidden;
-    background-color: #242424;
+  overflow: hidden;
+  background-color: #242424;
+  margin-left: 10;
+  margin-right: 10;
 }
 
 ::-webkit-scrollbar-thumb {

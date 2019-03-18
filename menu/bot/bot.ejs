@@ -1,64 +1,64 @@
-<div class="seeLimitsss" style="margin-left: -10; margin-right: -10; height: 0px; z-index: 10; position: relative;">
-    <div class="seeLimitsss" style="height: 35px; background-color: #111111;">
-        <span style="font-size: 25; position: relative; left: 7; vertical-align: middle; line-height: 35px;">
+<div class="ConsoleDiv">
+    <div class="ConsoleDivTab">
+        <span class="ConsoleDivTabTitle">
             Console
         </span>
-        <button class="Dbutton" style="position: relative; float: right; top: 7px; right: 10px; height: 21px; font-size: 15; line-height: 20px;" onclick="$('#BotConsoleLog').slideToggle(); $(this).html($(this).html() == 'Show' ? 'Hide' : 'Show')">Show</button>
-        <button class="Dbutton" style="position: relative; float: right; top: 7px; right: 20px; height: 21px; font-size: 15; line-height: 20px;" onclick="$('#BotConsoleLog').html('')">Clear</button>
+        <button class="ConsoleDivTabButtonShow Dbutton" onclick="$('#BotConsoleLog').slideToggle(); $(this).html($(this).html() == 'Show' ? 'Hide' : 'Show')">Show</button>
+        <button class="ConsoleDivTabButtonClear Dbutton" onclick="$('#BotConsoleLog').html('')">Clear</button>
     </div>
-    <textarea class="seeLimitsss" id="BotConsoleLog" style="height: 70vh; width: 100%; background-color: black; overflow: auto; user-select: text; font-family: Courier New, monospace; user-select: text; color: #c0c0c0; font-size: 16px; border: none; resize: none; outline: none; cursor: context-menu;" readonly></textarea>
+    <textarea class="ConsoleLogText" id="BotConsoleLog" readonly></textarea>
 </div><br><br>
-<div class="seeLimits" style="width: 98.5%; height: 55px; margin-top: 13;">
-    <p style="position: absolute; top: -4px; margin-left: 10; font-size:50;">
+<div id="BotDivTab">
+    <p id="ModsDivTabTitle">
         <b>Bot</b>
     </p>
-    <button class="Dbutton Dbutton_BlockStuff" style="position: absolute; right: 20" onclick="BotStartClick()">
+    <button class="Dbutton Dbutton_BlockStuff" id="BotDivTabButtonStart" onclick="BotStartClick()">
         Start
     </button>
 </div>
-<hr style="opacity: .3;">
+<hr class="HRFirst">
 <br>
-<div id="BotDBMCDAFDiv" style="margin-left: 10px;">
-    <button class="Dbutton" style="float: left; margin-right: 20px;" onclick="BotCopyActionsClick()">Copy</button>
-    <div style="float: left;">
-        <b>
-            <span style="font-size: 30">
-                Copy DBM Actions Folder
-            </span>
-        </b>
-        <br>
-        <span style="opacity: .5">Copies your DBM Actions Folder and pastes it in your Bot Folder</span>
+<div class="StuffBelowScroll">
+    <div id="BotDBMCDAFDiv">
+        <button class="Dbutton" id="BotDBMCDAFDivButton" onclick="BotCopyActionsClick()">Copy</button>
+        <div id="BotDBMCDAFDivText">
+            <b>
+                <span id="BotDBMCDAFDivTextFirst">
+                    Copy DBM Actions Folder
+                </span>
+            </b>
+            <br>
+            <span id="BotDBMCDAFDivTextSecond">Copies your DBM Actions Folder and pastes it in your Bot Folder</span>
+        </div>
+        <br><br><br><br>
+        <hr id="BotHRSecond">
     </div>
-    <br><br><br><br>
-    <hr style="margin-left: -10px; opacity: .1;">
-</div>
-<br>
-<div>
-    <div style="margin-left: 10;">
-        <b>
-            <span id="translationlanguage" style="font-size: 30">
-                Backup Data Folder
-            </span>
-        </b>
-        <br>
-        <span style="opacity: .5">Select the amount of time to backup your Bot Data Folder</span>
-    </div>
-    <div style="width: 100%; height: 35px;">
-        <input type="number" id="BotBackupAmount" style="background-color: #181818; border: none; outline: none; height: 35px; width: 40%; font-size: 20; margin: 10;" min="0" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))">
-        <select class="Dbutton" id="BotBackupSelect" style="background-color: #181818; height: 35px; font-size: 20; margin: 10; position: relative;" onchange="this.options[this.selectedIndex].value == 1 ? BotBackupAmount.disabled = true : BotBackupAmount.disabled = false">
-            <option value="1" selected>Never</option>
-            <option value="2">Milliseconds</option>
-            <option value="3">Seconds</option>
-            <option value="4">Minutes</option>
-            <option value="5">Hours</option>
-            <option value="6">Days</option>
-        </select>
-        <button class="Dbutton" style="height: 35px; line-height: 35px; margin-left: 10;" onclick="BotBackupSelectOnChange(); $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Backups set to: ${$('#BotBackupSelect').val() == 1 ? $('#BotBackupSelect option:selected').text() : $('#BotBackupAmount').val() + ' ' + $('#BotBackupSelect option:selected').text()}\n`);">Save</button>
-        <br>
-        <button class="Dbutton" style="height: 35px; line-height: 35px; margin-left: 10; margin-top: 5;" onclick='process.platform === "win32" ? exec(`start "" "${BackupsPath}"`) : exec(`nautilus ${BackupsPath}`)'>Open Backups Folder</button>
+    <br>
+    <div>
+        <div id="BotBackupDFDivText">
+            <b>
+                <span id="BotBackupDFTextFirst">
+                    Backup Data Folder
+                </span>
+            </b>
+            <br>
+            <span id="BotBackupDFTextSecond">Select the amount of time to backup your Bot Data Folder</span>
+        </div>
+        <div id="BotBackupDFDivSelect">
+            <input type="number" id="BotBackupAmount" min="0" onkeydown="return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+            <select class="Dbutton" id="BotBackupSelect" onchange="this.options[this.selectedIndex].value == 1 ? BotBackupAmount.disabled = true : BotBackupAmount.disabled = false">
+                <option value="1" selected>Never</option>
+                <option value="2">Milliseconds</option>
+                <option value="3">Seconds</option>
+                <option value="4">Minutes</option>
+                <option value="5">Hours</option>
+                <option value="6">Days</option>
+            </select>
+            <button id="BotBackupDFButtonSave" class="Dbutton" onclick="BotBackupSelectOnChange(); $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Backups set to: ${$('#BotBackupSelect').val() == 1 ? $('#BotBackupSelect option:selected').text() : $('#BotBackupAmount').val() + ' ' + $('#BotBackupSelect option:selected').text()}\n`);">Save</button>
+            <br>
+            <button id="BotBackupDFButtonOpenBF" class="Dbutton" onclick='process.platform === "win32" ? exec(`start "" "${BackupsPath}"`) : exec(`nautilus ${BackupsPath}`)'>Open Backups Folder</button>
+        </div>
     </div>
 </div>
 
 <script src="../bot/bot.js"></script>
-
-<link rel="stylesheet" type="text/css" href="../bot/bot.css">

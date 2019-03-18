@@ -1,50 +1,48 @@
-<div class="seeLimitsss" style="margin-left: -10; margin-right: -10; height: 0px; z-index: 10; position: relative;">
-    <div class="seeLimitsss" style="height: 35px; background-color: #111111;">
-        <span style="font-size: 25; position: relative; left: 7; vertical-align: middle; line-height: 35px;">
+<div class="ConsoleDiv">
+    <div class="ConsoleDivTab">
+        <span class="ConsoleDivTabTitle">
             Console
         </span>
-        <button class="Dbutton" style="position: relative; float: right; top: 7px; right: 10px; height: 21px; font-size: 15; line-height: 20px;" onclick="$('#ModsConsoleLog').slideToggle(); $(this).html($(this).html() == 'Show' ? 'Hide' : 'Show')">Show</button>
-        <button class="Dbutton" style="position: relative; float: right; top: 7px; right: 20px; height: 21px; font-size: 15; line-height: 20px;" onclick="$('#ModsConsoleLog').html('')">Clear</button>
+        <button class="ConsoleDivTabButtonShow Dbutton" onclick="$('#ModsConsoleLog').slideToggle(); $(this).html($(this).html() == 'Show' ? 'Hide' : 'Show')">Show</button>
+        <button class="ConsoleDivTabButtonClear Dbutton" onclick="$('#ModsConsoleLog').html('')">Clear</button>
     </div>
-    <textarea class="seeLimitsss" id="ModsConsoleLog" style="height: 70vh; width: 100%; background-color: black; overflow: auto; user-select: text; font-family: Courier New, monospace; user-select: text; color: #c0c0c0; font-size: 16px; border: none; resize: none; outline: none; cursor: context-menu;" readonly></textarea>
+    <textarea class="ConsoleLogText" id="ModsConsoleLog" readonly></textarea>
 </div><br><br>
-<div class="seeLimits" style="width: 98.5%; height: 55px; margin-top: 13;">
-    <p style="position: absolute; top:-4px; margin-left: 10; font-size:50;">
+<div id="ModsDivTab">
+    <p id="ModsDivTabTitle">
         <b>Mods</b>
     </p>
-    <button class="Dbutton Dbutton_BlockStuff" style="float: right;" onclick="ModsUninstallClick()">
+    <button class="Dbutton Dbutton_BlockStuff" id="ModsDivTabButtonUninstall" onclick="ModsUninstallClick()">
         Uninstall
     </button>
-    <button class="Dbutton Dbutton_BlockStuff" style="float: right; margin-right: 15px;" onclick="ModsInstallClick()">
+    <button class="Dbutton Dbutton_BlockStuff" id="ModsDivTabButtonInstall" onclick="ModsInstallClick()">
         Install
     </button>
-    <select class="Dbutton Dbutton_BlockStuff" id="ModsBranchSelect" style="float: right; margin-right: 15px; height: 52px; text-align-last:center; outline:0px; border: none;">
+    <select class="Dbutton Dbutton_BlockStuff" id="ModsBranchSelect">
         <option value="master" selected>Master</option>
         <option value="beta">Beta</option>
     </select>
 </div>
-<hr style="opacity: .3;">
+<hr class="HRFirst">
 <br>
-<div style="height: 70vh; overflow: auto; overflow-x: hidden;">
-    <div class="seeLimitssss" style="height: 65px; margin-left: 10; margin-right: 10;">
-        <div class="seeLimitssss" style="height: 65px; width: 70; position: relative; left: 0; top: 5">
-        <label class="switch">
-            <input id="ModsAM" type="checkbox" onclick="ModsAMClick()">
-            <span class="slider round"></span>
-        </label>
+<div class="StuffBelowScroll">
+    <div id="ModsAltModsDiv">
+        <div id="ModsAltModsDivSwitch">
+            <label class="switch">
+                <input id="ModsAM" type="checkbox" onclick="ModsAMClick()">
+                <span class="slider round"></span>
+            </label>
         </div>
-        <div class="seeLimitssss" style="height: 65px; width: 90%; position: relative; left: 110px; top: -62px;">
+        <div id="ModsAltModsDivText">
             <b>
-                <span style="font-size: 30">
+                <span id="ModsAltModsTextFirst">
                     Install Alternative Mods
                 </span>
             </b>
             <br>
-            <span style="opacity: .5">When it's enabled, Additional Mods, which aren’t used frequently, will be installed too</span>
+            <span id="ModsAltModsTextSecond">When it's enabled, Additional Mods, which aren’t used frequently, will be installed too</span>
         </div>
     </div>
 </div>
 
 <script src="../mods/mods.js"></script>
-
-<link rel="stylesheet" type="text/css" href="../mods/mods.css">

@@ -3,3 +3,80 @@
     opacity: .5; */
     display: none;
 }
+
+#BotDivTab {
+    width: 98.5%;
+    height: 55px;
+    margin-top: 13;
+}
+
+#ModsDivTabTitle {
+    position: absolute;
+    top: -4px;
+    margin-left: 10;
+    font-size:50;
+}
+
+#BotDivTabButtonStart {
+    position: absolute;
+    right: 20;
+}
+
+#BotDBMCDAFDiv, #BotBackupDFDivText {
+    margin-left: 10px;
+}
+
+#BotDBMCDAFDivButton {
+    float: left;
+    margin-right: 20px;
+}
+
+#BotDBMCDAFDivText {
+    float: left;
+}
+
+#BotDBMCDAFDivTextFirst, #BotBackupDFTextFirst {
+    font-size: 30;
+}
+
+#BotDBMCDAFDivTextSecond , #BotBackupDFTextSecond {
+    opacity: .5;
+}
+
+#BotHRSecond {
+    margin-left: -10px;
+    opacity: .1;
+}
+
+#BotBackupDFDivSelect {
+    width: 100%;
+    height: 35px;
+}
+
+#BotBackupAmount {
+    background-color: #181818;
+    border: none;
+    outline: none;
+    height: 35px;
+    width: 40%;
+    font-size: 20;
+    margin: 10;
+}
+
+#BotBackupSelect {
+    background-color: #181818;
+    height: 35px;
+    font-size: 20;
+    margin: 10;
+    position: relative;
+}
+
+#BotBackupDFButtonSave, #BotBackupDFButtonOpenBF {
+    height: 35px;
+    line-height: 35px;
+    margin-left: 10;
+}
+
+#BotBackupDFButtonOpenBF {
+    margin-top: 5;
+}

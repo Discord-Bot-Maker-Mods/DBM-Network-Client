@@ -1,3 +1,29 @@
+.Dbutton {
+    padding-left: 17; 
+    padding-right: 17;
+    border: none;
+    outline:0;
+    background-color: #444444;
+    
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+.Dbutton:hover {
+        background-color: #383838;
+}
+.Dbutton:active {
+        background-color: #303030;
+}
+.Dbutton:disabled, .Dbutton:disabled:hover, .Dbutton:disabled:active {
+    cursor: not-allowed;
+    background-color: #444444;
+    opacity: .5;
+}
+
 .HRFirst {
     opacity: .3;
 }
@@ -13,4 +39,68 @@
 
 .SpanNEEDSRESTART {
     opacity: .5;
+}
+
+.ConsoleDiv {
+    margin-left: -10;
+    margin-right: -10;
+    height: 0px;
+    z-index: 10;
+    position: relative;
+}
+
+.ConsoleDivTab {
+    height: 35px;
+    background-color: #111111;
+}
+
+.ConsoleDivTabTitle {
+    font-size: 25;
+    position: relative;
+    left: 7;
+    vertical-align: middle;
+    line-height: 35px;
+}
+
+.ConsoleDivTabButtonShow, .ConsoleDivTabButtonClear {
+    position: relative;
+    float: right;
+    top: 7px;
+    height: 21px;
+    font-size: 15;
+    line-height: 20px;
+}
+.ConsoleDivTabButtonShow {
+    right: 10px;
+}
+.ConsoleDivTabButtonClear {
+    right: 20px;
+}
+
+.ConsoleLogText {
+    height: 70vh;
+    width: 100%;
+    background-color: black;
+    overflow: auto;
+    user-select: text;
+    font-family: Courier New, monospace;
+    user-select: text;
+    color: #c0c0c0;
+    font-size: 16px;
+    border: none;
+    resize: none;
+    outline: none;
+    cursor: context-menu;
+}
+
+.StuffBelowScroll {
+    height: 77%;/*75vh;*/
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+* {
+    font-family: Arial;
+    color: #f2f2f2;
+    user-select: none;
 }

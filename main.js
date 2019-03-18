@@ -67,9 +67,9 @@ if(fse.existsSync(dataDataPath) == false) {
         "Discord_RPC": true
     });
     fse.writeFileSync(dataDataPath, obj);
-    var obj = JSON.parse(fse.readFileSync(path.join(app.getPath("userData"), "data", "data.json"), 'utf8')); // THIS IS THE OBJ
+    var _obj = JSON.parse(fse.readFileSync(path.join(app.getPath("userData"), "data", "data.json"), 'utf8')); // THIS IS THE OBJ
 } else {
-    var obj = JSON.parse(fse.readFileSync(path.join(app.getPath("userData"), "data", "data.json"), 'utf8')); // THIS IS THE OBJ
+    var _obj = JSON.parse(fse.readFileSync(path.join(app.getPath("userData"), "data", "data.json"), 'utf8')); // THIS IS THE OBJ
 }
 //-----------------------------------------------------------------------------------------------//
 
@@ -207,7 +207,7 @@ app.on('ready', function() {
 
 //------------------------------------------Discord RPC------------------------------------------//
 function DiscordRPC() {
-if(obj.Discord_RPC == true) {
+if(_obj.Discord_RPC == true) {
     const DiscordRPC = require('discord-rpc');
     const rpc = new DiscordRPC.Client({ transport: 'ipc' });
     const startTimestamp = new Date();

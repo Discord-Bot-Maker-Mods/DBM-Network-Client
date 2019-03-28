@@ -1,74 +1,49 @@
-//--------------------------------------------Modules--------------------------------------------//
+//---------------------------------------------------------------------//
+// Modules
+//
+// This is where you put the NPM Modules to use in this file.
+//---------------------------------------------------------------------//
+
 var electron = require('electron');
-const {ipcRenderer} = electron;
-
+var {ipcRenderer} = electron;
 var $ = jQuery = require('jquery');
-//-----------------------------------------------------------------------------------------------//
 
+//---------------------------------------------------------------------//
+// Transition Between Tabs
+//
+// This is the system that make transition between tabs when you
+// click in a new tab button.
+//---------------------------------------------------------------------//
 
+var blockerClick = false; // Anti-abuse system for when you click quickly on sidebar buttons
 
-var blockerClick = false;
-
-function ModsTabClick() {
-    if(blockerClick === false) {
+function ButtonTabClick(Window, TabName) {
+    if(blockerClick === false && !$(Window).is(":visible")) {
         blockerClick = true;
-        $('#BotWindow').fadeOut(200);
-        $('#SettingsWindow').fadeOut(200);
-        $('#ChangelogWindow').fadeOut(200);
-        setTimeout(() => {
-            $('#ModsWindow').fadeIn(200);
-            ipcRenderer.send('mode:changed', 'Mods');
+
+        $('#MenuAllWindows > div').fadeOut(200).promise().done(function() {
+            $(Window).fadeIn(200)
+            ipcRenderer.send('mode:changed', TabName);
             blockerClick = false;
-        }, 200);
+        });
     }
 }
 
-function BotTabClick() {
-    if(blockerClick === false) {
-        blockerClick = true;
-        $('#ModsWindow').fadeOut(200);
-        $('#SettingsWindow').fadeOut(200);
-        $('#ChangelogWindow').fadeOut(200);
-        setTimeout(() => {
-            $('#BotWindow').fadeIn(200);
-            ipcRenderer.send('mode:changed', 'Bot');
-            blockerClick = false;
-        }, 200);
-    }
-}
-
-function SettingsTabClick() {
-    if(blockerClick === false) {
-        blockerClick = true;
-        $('#ModsWindow').fadeOut(200);
-        $('#BotWindow').fadeOut(200);
-        $('#ChangelogWindow').fadeOut(200);
-        setTimeout(() => {
-            $('#SettingsWindow').fadeIn(200);
-            ipcRenderer.send('mode:changed', 'Settings');
-            blockerClick = false;
-        }, 200);
-    }
-}
-
-function ChangelogTabClick() {
-    if(blockerClick === false) {
-        blockerClick = true;
-        $('#ModsWindow').fadeOut(200);
-        $('#BotWindow').fadeOut(200);
-        $('#SettingsWindow').fadeOut(200);
-        setTimeout(() => {
-            $('#ChangelogWindow').fadeIn(200);
-            ipcRenderer.send('mode:changed', 'Changelog');
-            blockerClick = false;
-        }, 200);
-    }
-}
+//---------------------------------------------------------------------//
+// Show Current App Version
+//
+// This shows the current version of the app in the bottom corner.
+//---------------------------------------------------------------------//
 
 $('#SlidebarAppVersion').html(require('electron').remote.app.getVersion());
 
-//------------Electron Updater Stuff------------
+//---------------------------------------------------------------------//
+// Electron Auto Updater Status
+//
+// This shows the status of auto-updater in the bottom corner.
+// The system is in main.js file.
+//---------------------------------------------------------------------//
+
 ipcRenderer.on('ElectronUpdaterMES', function(event, text) {
     $('#SlidebarElectronUPStatus').html("- " + text);
 });
-//----------------------------------------------

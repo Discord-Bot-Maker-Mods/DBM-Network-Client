@@ -1,35 +1,44 @@
-//--------------------------------------------Modules--------------------------------------------//
-//var electron = require('electron');
+//---------------------------------------------------------------------//
+// Modules
+//
+// This is where you put the NPM Modules to use in this file.
+//---------------------------------------------------------------------//
+
 var path = require('path');
-//var ejs = require('ejs-electron');
 var fse = require('fs-extra');
-//const { exec } = require('child_process');
-//const {ipcRenderer} = electron;
-
 var $ = jQuery = require('jquery');
-//-----------------------------------------------------------------------------------------------//
 
+//---------------------------------------------------------------------//
+// Check If Backups Folder Exists
+//
+// This checks if the Backups folder exists.
+// If not, creates one.
+//---------------------------------------------------------------------//
 
-
-// Check if backups folder exists----------------------------------------------------------------//
 var BackupsPath = path.join(require('electron').remote.app.getPath('userData'), "backups");
 if(fse.existsSync(BackupsPath) == false) {
     fse.mkdirSync(BackupsPath);
 }
-//-----------------------------------------------------------------------------------------------//
 
+//---------------------------------------------------------------------//
+// Check If Data Folder Exists
+//
+// This checks if the data folder exists.
+// If not, creates one.
+//---------------------------------------------------------------------//
 
-
-// Check if data folder exists-------------------------------------------------------------------//
 var DataPath = path.join(require('electron').remote.app.getPath('userData'), "data");
 if(fse.existsSync(DataPath) == false) {
     fse.mkdirSync(DataPath);
 }
-//-----------------------------------------------------------------------------------------------//
 
+//---------------------------------------------------------------------//
+// Check If bot_data.json Exists
+//
+// This checks if the bot_data.json file exists.
+// If not, creates one.
+//---------------------------------------------------------------------//
 
-
-// Check if bot_data.json exists-----------------------------------------------------------------//
 var BotDataPath = path.join(DataPath, "bot_data.json");
 if(fse.existsSync(BotDataPath) == false) {
     const obj_bot = JSON.stringify({
@@ -38,11 +47,14 @@ if(fse.existsSync(BotDataPath) == false) {
     });
     fse.writeFileSync(BotDataPath, obj_bot);
 }
-//-----------------------------------------------------------------------------------------------//
 
+//---------------------------------------------------------------------//
+// Check If mods_data.json Exists
+//
+// This checks if the mods_data.json file exists.
+// If not, creates one.
+//---------------------------------------------------------------------//
 
-
-// Check if mods_data.json exists----------------------------------------------------------------//
 var ModsDataPath = path.join(DataPath, "mods_data.json");
 if(fse.existsSync(ModsDataPath) == false) {
     const obj_mods = JSON.stringify({
@@ -50,11 +62,14 @@ if(fse.existsSync(ModsDataPath) == false) {
     });
     fse.writeFileSync(ModsDataPath, obj_mods);
 }
-//-----------------------------------------------------------------------------------------------//
 
+//---------------------------------------------------------------------//
+// Check If data.json Exists
+//
+// This checks if the data.json file exists.
+// If not, creates one.
+//---------------------------------------------------------------------//
 
-
-// Check if data.json exists---------------------------------------------------------------------//
 var dataDataPath = path.join(DataPath, "data.json");
 if(fse.existsSync(dataDataPath) == false) {
     const obj = JSON.stringify({
@@ -64,4 +79,3 @@ if(fse.existsSync(dataDataPath) == false) {
     });
     fse.writeFileSync(dataDataPath, obj);
 }
-//-----------------------------------------------------------------------------------------------//

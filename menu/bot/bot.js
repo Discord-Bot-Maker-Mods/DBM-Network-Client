@@ -1,17 +1,31 @@
-//--------------------------------------------Modules--------------------------------------------//
+//---------------------------------------------------------------------//
+// Modules
+//
+// This is where you put the NPM Modules to use in this file.
+//---------------------------------------------------------------------//
+
 var path = require('path');
 var fse = require('fs-extra');
-const { exec } = require('child_process');
-
+var {exec} = require('child_process');
 var $ = jQuery = require('jquery');
-//-----------------------------------------------------------------------------------------------//
 
-
+//---------------------------------------------------------------------//
+// JSON OBJ
+//
+// Use these JSON objects that contain the App Data.
+// obj -> data.json
+// obj_bot -> bot_data.json
+//---------------------------------------------------------------------//
 
 var obj = JSON.parse(fse.readFileSync(dataDataPath, 'utf8'));
 var obj_bot = JSON.parse(fse.readFileSync(BotDataPath, 'utf8'));
 
-// Load values
+//---------------------------------------------------------------------//
+// Load Values
+//
+// Loads values from JSON files.
+//---------------------------------------------------------------------//
+
 $('#BotBackupSelect').val(obj_bot.Backup_Timer_Type);
 $('#BotBackupAmount').val(obj_bot.Backup_Timer_Value);
 
@@ -19,62 +33,102 @@ if($('#BotBackupSelect').val() == 1) {
     $('#BotBackupAmount').prop('disabled', true);
 }
 
-function BotStartClick() {
-    // Check if Bot Path exists and is valid
+//---------------------------------------------------------------------//
+// function BotConsoleLog(text)
+//
+// This function sends text to Bot Console Log.
+//---------------------------------------------------------------------//
+
+function BotConsoleLog(text) {
+    $('#BotConsoleLog').append(text);
+    if(!$('#BotConsoleLog').is(':visible')) {
+        $('#BotConsoleLogNumber').html(parseInt($('#BotConsoleLogNumber').text(),10) + 1 || 1)
+    }
+}
+
+//---------------------------------------------------------------------//
+// function CheckIfDBMPathExists()
+//
+// This function checks if DBM Path exists and is valid.
+//---------------------------------------------------------------------//
+
+function CheckIfDBMPathExists() {
+    if(obj.DBM_Path == "") {
+        BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - ERROR: DBM Path isn't set in Settings\n`);
+        return;
+    }
+
+    if(!fse.existsSync(obj.DBM_Path)) {
+        BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - ERROR: DBM Path isn't valid\n`);
+        return;
+    }
+}
+
+//---------------------------------------------------------------------//
+// function CheckIfBotPathExists()
+//
+// This function checks if Bot Path exists and is valid.
+//---------------------------------------------------------------------//
+
+function CheckIfBotPathExists() {
     if(obj.Bot_Path == "") {
-        $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: Bot Path isn't set in Settings\n`);
+        BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - ERROR: Bot Path isn't set in Settings\n`);
         return;
     }
 
     if(!fse.existsSync(obj.Bot_Path)) {
-        $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: Bot Path isn't valid\n`);
+        BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - ERROR: Bot Path isn't valid\n`);
         return;
     }
+}
+
+//---------------------------------------------------------------------//
+// function BotStartClick()
+//
+// This is the function that starts your bot when you
+// press the Start button on Bot tab.
+//---------------------------------------------------------------------//
+
+function BotStartClick() {
+    //-----------------------------Check if Bot Path exists and is valid-----------------------------//
+    CheckIfBotPathExists();
     //-----------------------------------------------------------------------------------------------//
 
+
     const grep = process.platform === "win32" ? exec(`start cmd.exe /k "cd "${obj.Bot_Path}" && node bot.js"`) : exec(`gnome-terminal --command="bash -c 'cd ${(obj.Bot_Path).replace(/\ /g, "\\ ")}; node bot.js; ls; $SHELL'"`);
-    $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Bot Started\n`);
+    BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - Bot Started\n`);
 
     if(process.platform === "win32") { // Linux doesn't detect this...
         grep.on('close', (code, signal) => {
-            $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Bot Stopped\n`);
+            BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - Bot Stopped\n`);
         });
     }
 
     grep.on('error', (err) => {
-        $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: ${err}\n`);
+        BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - ERROR: ${err}\n`);
     });
 }
+
+//---------------------------------------------------------------------//
+// function BotCopyActionsClick()
+//
+// This is the function that copies and pastes your actions folder
+// on your bot folder when you press the Copy DBM Actions Folder 
+// button on Bot tab.
+//---------------------------------------------------------------------//
 
 function BotCopyActionsClick() {
     const start = new Date();
     var processB1 = 0;
 
-    $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Copying and pasting DBM Actions Folder...\n`);
+    BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - Copying and pasting DBM Actions Folder...\n`);
 
-    // Check if DBM Path exists and is valid
-    if(obj.DBM_Path == "") {
-        $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: DBM Path isn't set in Settings\n`);
-        return;
-    }
 
-    if(!fse.existsSync(obj.DBM_Path)) {
-        $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: DBM Path isn't valid\n`);
-        return;
-    }
+    //------------------------Check if DBM Path and Bot Path exists and is valid---------------------//
+    CheckIfDBMPathExists();
+    CheckIfBotPathExists();
     //-----------------------------------------------------------------------------------------------//
 
-    // Check if Bot Path exists and is valid
-    if(obj.Bot_Path == "") {
-        $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: Bot Path isn't set in Settings\n`);
-        return;
-    }
-
-    if(!fse.existsSync(obj.Bot_Path)) {
-        $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: Bot Path isn't valid\n`);
-        return;
-    }
-    //-----------------------------------------------------------------------------------------------//
 
     fse.readdirSync(path.join(obj.DBM_Path, "actions")).forEach(function(file, index, arr) {
         if(file.match(/^.+\.js$/i)) {
@@ -83,12 +137,20 @@ function BotCopyActionsClick() {
         }
         processB1++;
         if(processB1 === arr.length) {
-            $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - DBM Actions Folder copied and pasted in your Bot successfully! (${((new Date() - start)*10**-3).toFixed(3)}s)\n`);
+            BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - DBM Actions Folder copied and pasted in your Bot successfully! (${((new Date() - start)*10**-3).toFixed(3)}s)\n`);
         }
     });
 }
 
-BotBackupSelectOnChange();
+//---------------------------------------------------------------------//
+// function BotBackupSelectOnChange()
+//
+// This is the function that makes the backup data folder system
+// work.
+//---------------------------------------------------------------------//
+
+BotBackupSelectOnChange(); //Executes the function BotBackupSelectOnChange() on start of the app
+
 function BotBackupSelectOnChange() {
     const BackupSelectValue =  $("#BotBackupSelect").val();
     let timesetBackup = null;
@@ -112,16 +174,8 @@ function BotBackupSelectOnChange() {
 
     if (!isNaN(BackupSelectValue) && timesetBackup != null) {
         this.currentInterval = setInterval(function() {
-            // Check if Bot Path exists and is valid
-            if(obj.Bot_Path == "") {
-                $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: Bot Path isn't set in Settings\n`);
-                return;
-            }
-
-            if(!fse.existsSync(obj.Bot_Path)) {
-                $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - ERROR: Bot Path isn't valid\n`);
-                return;
-            }
+            //-----------------------------Check if Bot Path exists and is valid-----------------------------//
+            CheckIfBotPathExists();
             //-----------------------------------------------------------------------------------------------//
 
             const d = new Date();
@@ -129,12 +183,13 @@ function BotBackupSelectOnChange() {
             fse.ensureDirSync(path.join(BackupsPath, fname));
             fse.copySync(path.join(obj.Bot_Path, "data"), path.join(BackupsPath, fname));
 
-            $('#BotConsoleLog').append(`${d.toTimeString().slice(0,8)} - New backup folder created: ${fname}\n`);
+            BotConsoleLog(`${d.toTimeString().slice(0,8)} - New backup folder created: ${fname}\n`);
     }, timesetBackup);
 };
 
-// Store value in Data
+//------------------------------------Store value in Data----------------------------------------//
 obj_bot.Backup_Timer_Value = $("#BotBackupAmount").val();
 obj_bot.Backup_Timer_Type = BackupSelectValue;
 fse.writeFileSync(BotDataPath, JSON.stringify(obj_bot));
+//-----------------------------------------------------------------------------------------------//
 }

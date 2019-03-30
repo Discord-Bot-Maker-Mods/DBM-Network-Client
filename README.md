@@ -5,9 +5,12 @@
   </p>
   <br />
   <p>
-    <a href=""><img src="https://img.shields.io/github/contributors/Discord-Bot-Maker-Mods/DBM-Network-Client.svg" alt="Contributors Counter" /></a>
-    <a href=""><img src="https://img.shields.io/github/downloads/Discord-Bot-Maker-Mods/DBM-Network-Client/total.svg" alt="Downloads Counter" /></a>
-    <a href=""><img src="https://img.shields.io/github/license/Discord-Bot-Maker-Mods/DBM-Network-Client.svg" alt="License" /></a>
+    <a href=""><img src="https://img.shields.io/github/contributors/Discord-Bot-Maker-Mods/DBM-Network-Client.svg?style=for-the-badge" alt="Contributors Counter" /></a>
+    <a href=""><img src="https://img.shields.io/github/release/Discord-Bot-Maker-Mods/DBM-Network-Client.svg?style=for-the-badge" alt="Latest Release" /></a>
+    <a href=""><img src="https://img.shields.io/github/license/Discord-Bot-Maker-Mods/DBM-Network-Client.svg?style=for-the-badge" alt="License" /></a>
+    <a href=""><img src="https://img.shields.io/github/downloads/Discord-Bot-Maker-Mods/DBM-Network-Client/latest/dbm-network-client-setup-1.0.0.exe.svg?style=for-the-badge" alt="Downloads Counter" /></a>
+    <a href=""><img src="https://img.shields.io/github/downloads/Discord-Bot-Maker-Mods/DBM-Network-Client/latest/dbm-network-client-1.0.0-x86_64.AppImage.svg?style=for-the-badge" alt="Downloads Counter" /></a>
+
 </div>
 
 # Download 📂

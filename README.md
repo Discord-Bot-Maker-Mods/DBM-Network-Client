@@ -60,6 +60,8 @@ Fixed Start and Open Backups Folder buttons not working in Linux
 
 | User | Helps with |
 |-|-|
+|General Wrex|Original Dev|
+|SeikiMatt|Original Dev|
 |MrGold|App Creation, Design & Code|
 |Danno3817|App Creation & Fixes|
 

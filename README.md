@@ -14,33 +14,27 @@
 </div>
 
 # Download 📂
-[Windows (64bit)](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.0.0/dbm-network-client-setup-1.0.0.exe)<br>
-`Windows (32bit)` coming soon<br>
-[Linux](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.0.0/dbm-network-client-1.0.0-x86_64.AppImage)
+[Windows (64bit & 32bit)](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.1.0/dbm-network-client-setup-1.1.0.exe)<br>
+[Linux](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/releases/download/v1.1.0/dbm-network-client-1.1.0-x86_64.AppImage)
 
 # Changelog ⏰
-1.0.0 - 16/03/2019
+1.1.0 - 02/04/2019
 ### New 🎉
 ```
-New Design
-Added Mod tab to manage your Mods
-    Added Install/Uninstall Mods
-    Added Mods Version selector
-    Added a switch to enable/disable Alternative Mods
-Added Bot tab to start and manage your Bot
-    Added Start button to start your Bot in an external Terminal
-    Added Copy DBM Actions Folder
-    Added Backup Data Folder
-Added Settings tab to setting some App Settings
-    Added a switch to enable/disable Discord RPC
+Added your Discord Info in Sidebar! (Suggestion: Raff Ty#0001)
+Now Consoles ping you when a new message is shown on them (Suggestion: Raff Ty#0001)
+Mods Tab:
+    Added Installation Location (Suggestion: Danno3817#8263)
+    Added a list of your Mods to manage them
+Added Data Files tab to manage your Commands and Events:
+    Added a list of your Commands/Events to manage them
 ```
 
 ### Fixed 📌
 ```
-Fixed the error on start of the App about Data folder
-Fixed Main Window centered
-Fixed DBM stuff wasn't hide in Linux
-Fixed Start and Open Backups Folder buttons not working in Linux
+Fixed the error on start of the App about Data folder and Backups folder [PART 2]
+Fixed the adjustment of the elements to the corners of the app
+Fixed the adjustment of the rotating Logo in Sidebar
 ```
 
 # Features 📃
@@ -54,16 +48,17 @@ Fixed Start and Open Backups Folder buttons not working in Linux
 - [ ] Install/Uninstall/Apply Translations<br>
 - [ ] Home for News<br>
 - [ ] Language option<br>
+- [ ] Themes option<br>
 ###### and others features...
 
 # Contributors 🤝
 
-| User | Helps with |
+| User | Note |
 |-|-|
 |General Wrex|Original Dev|
 |SeikiMatt|Original Dev|
-|MrGold|App Creation, Design & Code|
-|Danno3817|App Creation & Fixes|
+|MrGold|Helps with App Creation, Design & Code|
+|Danno3817|Helps with App Creation & Fixes|
 
-###### If you want to contribute, fork [this repository](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/tree/Alpha-1.0.0) and create a pull request with your changes
+###### If you want to contribute, fork [this repository](https://github.com/Discord-Bot-Maker-Mods/DBM-Network-Client/tree/Alpha-1.1.0) and create a pull request with your changes
 ###### ~~If you want to help in translation, contact `Mr.Gold#6116`~~

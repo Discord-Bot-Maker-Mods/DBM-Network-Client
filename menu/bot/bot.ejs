@@ -3,8 +3,9 @@
         <span class="ConsoleDivTabTitle">
             Console
         </span>
-        <button class="ConsoleDivTabButtonShow Dbutton" onclick="$('#BotConsoleLog').slideToggle(); $(this).html($(this).html() == 'Show' ? 'Hide' : 'Show')">Show</button>
-        <button class="ConsoleDivTabButtonClear Dbutton" onclick="$('#BotConsoleLog').html('')">Clear</button>
+        <button class="ConsoleDivTabButtonShow Dbutton" onclick="$('#BotConsoleLog').slideToggle(); $(this).html($(this).html() == 'Show' ? 'Hide' : 'Show'); $('#BotConsoleLogNumber').html('')">Show</button>
+        <button class="ConsoleDivTabButtonClear Dbutton" onclick="$('#BotConsoleLog').html(''); $('#BotConsoleLogNumber').html('')">Clear</button>
+        <span id="BotConsoleLogNumber"></span>
     </div>
     <textarea class="ConsoleLogText" id="BotConsoleLog" readonly></textarea>
 </div><br><br>
@@ -18,7 +19,7 @@
 </div>
 <hr class="HRFirst">
 <br>
-<div class="StuffBelowScroll">
+<!--<div class="StuffBelowScroll">-->
     <div id="BotDBMCDAFDiv">
         <button class="Dbutton" id="BotDBMCDAFDivButton" onclick="BotCopyActionsClick()">Copy</button>
         <div id="BotDBMCDAFDivText">
@@ -32,8 +33,8 @@
         </div>
         <br><br><br><br>
         <hr id="BotHRSecond">
+        <br>
     </div>
-    <br>
     <div>
         <div id="BotBackupDFDivText">
             <b>
@@ -54,11 +55,11 @@
                 <option value="5">Hours</option>
                 <option value="6">Days</option>
             </select>
-            <button id="BotBackupDFButtonSave" class="Dbutton" onclick="BotBackupSelectOnChange(); $('#BotConsoleLog').append(`${new Date().toTimeString().slice(0,8)} - Backups set to: ${$('#BotBackupSelect').val() == 1 ? $('#BotBackupSelect option:selected').text() : $('#BotBackupAmount').val() + ' ' + $('#BotBackupSelect option:selected').text()}\n`);">Save</button>
+            <button id="BotBackupDFButtonSave" class="Dbutton" onclick="BotBackupSelectOnChange(); BotConsoleLog(`${new Date().toTimeString().slice(0,8)} - Backups set to: ${$('#BotBackupSelect').val() == 1 ? $('#BotBackupSelect option:selected').text() : $('#BotBackupAmount').val() + ' ' + $('#BotBackupSelect option:selected').text()}\n`);">Save</button>
             <br>
             <button id="BotBackupDFButtonOpenBF" class="Dbutton" onclick='process.platform === "win32" ? exec(`start "" "${BackupsPath}"`) : exec(`nautilus ${BackupsPath}`)'>Open Backups Folder</button>
         </div>
     </div>
-</div>
+<!--</div>-->
 
 <script src="../bot/bot.js"></script>

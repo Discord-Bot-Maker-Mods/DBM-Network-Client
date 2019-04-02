@@ -1,0 +1,82 @@
+#DataFilesDivTab {
+    width: 98.5%;
+    height: 55px;
+    margin-top: 13;
+}
+
+#DataFilesTypeSelect {
+    float: right;
+    height: 52px;
+    text-align-last:center;
+    outline:0px;
+    border: none;
+}
+
+#DataFilesDivTabTitle {
+    position: absolute;
+    top: -40;
+    margin-left: 10;
+    font-size: 50;
+}
+
+#DataFilesDivTabButtonCommands {
+    float: right;
+    margin-right: 15px;
+}
+
+#DataFilesExtraWindowDiv {
+    display: none;
+    position: fixed;
+    z-index: 11;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+}
+
+#DataFilesExtraWindow {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+    height: 60%;
+    background-color: #333333;
+    padding: 20;
+    border-radius: 30px;
+}
+
+#DataFilesExtraWindowExitButton {
+    position: absolute;
+    top: 20;
+    right: 25;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+#DataFilesExtraWindowExitButton:hover {
+    color: #969696;
+}
+#DataFilesExtraWindowExitButton:active {
+    color: #727272;
+}
+
+#DataFilesExtraWindowInfoName {
+    font-size: 30;
+}
+
+#DataFilesExtraWindowInfoType {
+    font-size: 13;
+    opacity: .4;
+}
+
+#DataFilesExtraWindowInfo1, #DataFilesExtraWindowInfo2, #DataFilesExtraWindowInfo3, #DataFilesExtraWindowInfo4 {
+    font-size: 20;
+    opacity: .9;
+}
+
+#DataFilesExtraWindowInfoTrue1, #DataFilesExtraWindowInfoTrue2, #DataFilesExtraWindowInfoTrue3, #DataFilesExtraWindowInfoTrue4 {
+    font-size: 15;
+    opacity: .7;
+}

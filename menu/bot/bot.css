@@ -80,3 +80,16 @@
 #BotBackupDFButtonOpenBF {
     margin-top: 5;
 }
+
+#BotConsoleLogNumber:not(:empty) {
+    float: right;
+    margin-right: 35;
+    margin-top: 6;
+    font-size: 18;
+
+    background-color: #d82606;
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}

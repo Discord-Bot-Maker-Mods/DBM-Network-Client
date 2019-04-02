@@ -13,6 +13,9 @@
     <div id="BotWindow"> <!-- Bot Stuff -->
         <% include ../../menu/bot/bot %>
     </div>
+    <div id="DataFilesWindow"> <!-- Data Files Stuff -->
+        <% include ../../menu/datafiles/datafiles %>
+    </div>
     <div id="ChangelogWindow"> <!-- Changelog Stuff -->
         <% include ../../menu/changelog/changelog %>
     </div>
@@ -24,6 +27,7 @@
 <!------------------------All CSS Files------------------------>
 <link rel="stylesheet" type="text/css" href="../bot/bot.css">
 <link rel="stylesheet" type="text/css" href="../changelog/changelog.css">
+<link rel="stylesheet" type="text/css" href="../datafiles/datafiles.css">
 <link rel="stylesheet" type="text/css" href="menu.css">
 <link rel="stylesheet" type="text/css" href="../mods/mods.css">
 <link rel="stylesheet" type="text/css" href="../settings/settings.css">
@@ -33,23 +37,29 @@
 <!------------------------------------------------------------->
 
 <script>
-$('#SettingsWindow').fadeOut(0);
-$('#ChangelogWindow').fadeOut(0);
+$('#BotWindow').hide();
+$('#DataFilesWindow').hide();
+$('#SettingsWindow').hide();
+$('#ChangelogWindow').hide();
 
-$('#ModsConsoleLog').slideUp(0);
-$('#BotConsoleLog').slideUp(0);
+$('#ModsConsoleLog').hide();
+$('#BotConsoleLog').hide();
 
 
+//---------------------------------------------------------------------//
+// Check OS
+//
+// Check if OS is Windows. If it's false, hides some features 
+// about DBM... DBM only supports Windows lol.
+//---------------------------------------------------------------------//
 
-// Check if OS is Windows. If it's false, hides some features about DBM... DBM only supports Windows lol
-if(process.platform === "win32") {
-    $('#BotWindow').fadeOut(0);
-} else {
-    $('#SlideBarButtonMods').hide();
-    $('#ModsWindow').hide();
-    $('#SettingsDBMPathDiv').hide();
-    $('#BotDBMCDAFDiv').hide();
+if(process.platform !== "win32") {
+    $('#SettingsDBMPathDiv').hide(); // Removes DBM Path on Settings tab
+    $('#BotDBMCDAFDiv').hide(); // Removes Copy DBM Actions Folder on Bot tab
+    $("#ModsInstallationLocSelect option[value=1]").prop('disabled', true); // Disables the option DBM Folder on Settings tab
+    $("#ModsInstallationLocSelect option[value=2]").prop('selected', true); // Selects the option Bot Folder on Settings tab
+    ModsInstallationLocChange($("#ModsInstallationLocSelect")); // Fixes the current selected option on Settings tab
 }
-//-----------------------------------------------------------------------------------------------//
+
 </script>
 <!--<script src="./translation.js"></script>-->

@@ -38,6 +38,9 @@ function SettingsSaveClick() {
     obj.Bot_Path = $('#SettingsBotPath').val();
     obj.Discord_RPC = $('#SettingsDiscordRPC').prop('checked');
     fse.writeFileSync(dataDataPath, JSON.stringify(obj));
+
+    DataFilesRefreshClick($('#DataFilesTypeSelect').val() == 'commands' ? JSON.parse(fse.readFileSync(path.join(obj.Bot_Path, 'data', 'commands.json'), 'utf8')) : JSON.parse(fse.readFileSync(path.join(obj.Bot_Path, 'data', 'events.json'), 'utf8'))); // DATA FILES STUFF! This refresh the list of Commands/Events on Data Files tab
+    ModsInstallationLocChange($("#ModsInstallationLocSelect")); // MODS STUFF! This refresh the list of Mods on Mods tab
 }
 
 //---------------------------------------------------------------------//
@@ -54,24 +57,18 @@ function SettingsUnsaveClick() {
 }
 
 //---------------------------------------------------------------------//
-// Open Browser Window
+// function SettingsOpenBrowserClick(element)
 //
-// This is the system that opens the browser window when you
+// This is the function that opens the browser window when you
 // press the Browser button on Settings tab.
-//
-// OUTDATED // OUTDATED // OUTDATED // OUTDATED // OUTDATED // OUTDATED //
 //---------------------------------------------------------------------//
 
-document.getElementById('SettingsNotSecretBrowser1').addEventListener('click', _ => {
-    document.getElementById('SettingsSecretBrowser1').click()
-});
-function onFileChange1() {
-    document.getElementById("SettingsDBMPath").value = document.getElementById("SettingsSecretBrowser1").files[0].path;
-}
-
-document.getElementById('SettingsNotSecretBrowser2').addEventListener('click', _ => {
-    document.getElementById('SettingsSecretBrowser2').click()
-});
-function onFileChange2() {
-    document.getElementById("SettingsBotPath").value = document.getElementById("SettingsSecretBrowser2").files[0].path;
+function SettingsOpenBrowserClick(element) {
+    dialog.showOpenDialog({
+        properties: ['openDirectory']
+    }, function(filePaths) {
+        if(filePaths) {
+            $(element).val(filePaths[0]);
+        }
+    })
 }

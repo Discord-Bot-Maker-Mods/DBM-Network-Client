@@ -6,17 +6,29 @@
         </div>
         <p id="SlidebarLogoText">DBM Network Client</p>
     </div>
-    <div class="SlidebarSlideMenu_Button" id="SlidebarButtonMods" onclick="ButtonTabClick('#ModsWindow', 'Mods')">
-        <p id="SlidebarButtonModsText">Mods</p>
+    <div id="SlidebarDivDiscord">
+        <img id="SlidebarDivDiscordAvatar" src="../sidebar/DiscordDefaultAvatar.png" draggable="false" onContextMenu="return false;">
+        <span id="SlidebarDivDiscordUsername"></span><span id="SlidebarDivDiscordDiscriminator">Discord not detected</span>
+        <br>
+        <span id="SlidebarDivDiscordIDText"></span> <span id="SlidebarDivDiscordID"></span>
     </div>
-	<div class="SlidebarSlideMenu_Button" id="SlidebarButtonBot" onclick="ButtonTabClick('#BotWindow', 'Bot')">
-        <p id="SlidebarButtonBotText">Bot</p>
-    </div>
-    <div class="SlidebarSlideMenu_Button" id="SlidebarButtonSettings" onclick="ButtonTabClick('#SettingsWindow', 'Settings')">
-        <p id="SlidebarButtonSettingsText">Settings</p>
-    </div>
-    <div class="SlidebarSlideMenu_Button" id="SlidebarButtonChangelog" onclick="ButtonTabClick('#ChangelogWindow', 'Changelog')">
-        <p id="SlidebarButtonChangelogText">Changelog</p>
+    <div class="StuffBelowScroll" id="SlidebarButtonsList">
+        <div class="SlidebarSlideMenu_Button" id="SlidebarButtonMods" onclick="ButtonTabClick('#ModsWindow', 'Mods')">
+            <span id="SlidebarButtonModsText">Mods</span>
+        </div>
+	    <div class="SlidebarSlideMenu_Button" id="SlidebarButtonBot" onclick="ButtonTabClick('#BotWindow', 'Bot')">
+            <span id="SlidebarButtonBotText">Bot</span>
+        </div>
+        <div class="SlidebarSlideMenu_Button" id="SlidebarButtonDataFiles" onclick="ButtonTabClick('#DataFilesWindow', 'Data Files')">
+            <span id="SlidebarButtonDataFilesText">Data Files</span>
+        </div>
+        <div class="SlidebarSlideMenu_Button" id="SlidebarButtonSettings" onclick="ButtonTabClick('#SettingsWindow', 'Settings')">
+            <span id="SlidebarButtonSettingsText">Settings</span>
+        </div>
+        <div class="SlidebarSlideMenu_Button" id="SlidebarButtonChangelog" onclick="ButtonTabClick('#ChangelogWindow', 'Changelog')">
+            <span id="SlidebarButtonChangelogText">Changelog</span>
+        </div>
+        <br><br>
     </div>
     <p id="SlidebarInfoBelow">© DBM Network<br><span id="SlidebarAppVersion"></span> <span id="SlidebarElectronUPStatus"></span></p>
 </div>

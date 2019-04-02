@@ -41,6 +41,7 @@ if($('#BotBackupSelect').val() == 1) {
 
 function BotConsoleLog(text) {
     $('#BotConsoleLog').append(text);
+    
     if(!$('#BotConsoleLog').is(':visible')) {
         $('#BotConsoleLogNumber').html(parseInt($('#BotConsoleLogNumber').text(),10) + 1 || 1)
     }
@@ -149,7 +150,7 @@ function BotCopyActionsClick() {
 // work.
 //---------------------------------------------------------------------//
 
-BotBackupSelectOnChange(); //Executes the function BotBackupSelectOnChange() on start of the app
+BotBackupSelectOnChange(); // Executes the function BotBackupSelectOnChange() on start of the app
 
 function BotBackupSelectOnChange() {
     const BackupSelectValue =  $("#BotBackupSelect").val();

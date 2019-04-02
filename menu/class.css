@@ -94,7 +94,6 @@
 }
 
 .StuffBelowScroll {
-    height: 77%;/*75vh;*/
     overflow: auto;
     overflow-x: hidden;
 }

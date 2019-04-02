@@ -20,11 +20,17 @@
 }
 
 #ModsDivTabButtonInstall {
-    float: right; margin-right: 15px;
+    float: right;
+    margin-right: 15px;
 }
 
 #ModsBranchSelect {
-    float: right; margin-right: 15px; height: 52px; text-align-last:center; outline:0px; border: none;
+    float: right;
+    margin-right: 15px;
+    height: 52px;
+    text-align-last: center;
+    outline: 0px;
+    border: none;
 }
 
 #ModsAltModsDiv {
@@ -49,10 +55,110 @@
     top: -62px;
 }
 
-#ModsAltModsTextFirst {
+#ModsAltModsTextFirst, #ModsInstallationLocTextFirst {
     font-size: 30;
 }
 
-#ModsAltModsTextSecond {
+#ModsAltModsTextSecond, #ModsInstallationLocTextSecond {
     opacity: .5;
+}
+
+#ModsConsoleLogNumber:not(:empty) {
+    float: right;
+    margin-right: 35;
+    margin-top: 6;
+    font-size: 18;
+
+    background-color: #d82606;
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}
+
+#ModsExtraWindowDiv {
+    display: none;
+    position: fixed;
+    z-index: 11;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+}
+
+#ModsExtraWindow {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+    height: 60%;
+    background-color: #333333;
+    padding: 20;
+    border-radius: 30px;
+}
+
+#ModsExtraWindowExitButton {
+    position: absolute;
+    top: 20;
+    right: 25;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+#ModsExtraWindowExitButton:hover {
+    color: #969696;
+}
+#ModsExtraWindowExitButton:active {
+    color: #727272;
+}
+
+#ModsExtraWindowInfoName {
+    font-size: 30;
+}
+
+#ModsExtraWindowInfoAuthor {
+    font-size: 13;
+    opacity: .4;
+}
+
+#ModsExtraWindowInfoSection, #ModsExtraWindowInfoDescription {
+    font-size: 20;
+    opacity: .9;
+}
+
+#ModsExtraWindowInfoTrueSection, #ModsExtraWindowInfoTrueDescription {
+    font-size: 15;
+    opacity: .7;
+}
+
+#ModsExtraWindowInfoVersion {
+    position: absolute;
+    bottom: 20;
+    left: 20;
+    opacity: .4;
+}
+
+#ModsInstallationLocDivSelect {
+    width: 100%;
+    height: 35px;
+}
+
+#ModsInstallationLocSelect {
+    background-color: #181818;
+    height: 35px;
+    font-size: 20;
+    margin: 10;
+    position: relative;
+}
+
+#ModsInstallationLocDivText {
+    margin-left: 10px;
+}
+
+#ModsInstallationLocButtonOpenFolder {
+    height: 35px;
+    line-height: 35px;
+    margin-left: 10;
 }

@@ -232,6 +232,13 @@ if(_obj.Discord_RPC == true) {
 
     rpc.once('ready', () => {
         setActivity(process.platform === 'win32' ? "Mods" : "Bot", startTimestamp);
+        const DiscordUserInfo = {
+            "username": rpc.user.username,
+            "discriminator": rpc.user.discriminator,
+            "avatar": rpc.user.avatar,
+            "id": rpc.user.id
+        }
+        menuScreen.webContents.send('DiscordUserInfo', DiscordUserInfo);
     });
 
     rpc.login({clientId}).catch(console.error);

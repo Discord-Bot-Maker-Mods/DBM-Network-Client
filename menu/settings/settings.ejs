@@ -11,7 +11,7 @@
 </div>
 <hr class="HRFirst">
 <br>
-<div class="StuffBelowScroll">
+<!--<div class="StuffBelowScroll">-->
     <div id="SettingsDBMPathDiv">
         <div id="SettingsDBMPathDivText">
             <b>
@@ -24,8 +24,9 @@
         </div>
         <div id="SettingsDBMPathDivFunctions">
             <input type="text" id="SettingsDBMPath">
-            <button class="Dbutton" id="SettingsNotSecretBrowser1">Browse</button>
-            <input type="file" webkitdirectory style="display: none" id="SettingsSecretBrowser1" onchange="onFileChange1()">
+            <button class="Dbutton" id="SettingsDBMPathBrowser" onclick="SettingsOpenBrowserClick($('#SettingsDBMPath'))">
+                Browse
+            </button>
         </div>
         <br><br>
     </div>
@@ -41,8 +42,9 @@
         </div>
         <div id="SettingsBotPathDivFunctions">
             <input type="text" id="SettingsBotPath">
-            <button class="Dbutton" id="SettingsNotSecretBrowser2">Browse</button>
-            <input type="file" webkitdirectory style="display: none" id="SettingsSecretBrowser2" onchange="onFileChange2()">
+            <button class="Dbutton" id="SettingsBotPathBrowser" onclick="SettingsOpenBrowserClick($('#SettingsBotPath'))">
+                Browse
+            </button>
         </div>
     </div>
     <br><br>
@@ -65,32 +67,6 @@
             <span id="SettingsDiscordRPCTextSecond">Shows a cool Rich Presence in your Discord Profile</span> <b><span class="SpanNEEDSRESTART">(NEEDS RESTART)</span></b>
         </div>
     </div>
-    <!--<br>
-    <hr style="opacity: .1;">
-    <br>
-    <div>
-        <div style="margin-left: 10;">
-            <b>
-                <span id="translationlanguage" style="font-size: 30">
-                    Language
-                </span>
-            </b>
-            <br>
-            <span style="opacity: .5">Select your Language</span>
-        </div>
-        <div style="width: 100%; height: 35px;">
-            <select class="Dbutton" id="SettingsLanguageSelect" style="background-color: #181818; height: 35px; width: 75%; font-size: 20; margin: 10;">
-                <option value="english" selected>English</option>
-                <option value="portugues">Português</option>
-                <option value="espanol">Español</option>
-                <option value="francais">Français</option>
-                <option value="italiano">Italiano</option>
-                <option value="deutsch">Deutsch</option>
-                <option value="turk">Türk</option>
-            </select>
-        </div>
-    </div>
-    <br><br>-->
-</div>
+<!--</div>-->
 
 <script src="../settings/settings.js"></script>

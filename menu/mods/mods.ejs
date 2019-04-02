@@ -1,10 +1,26 @@
+<div id="ModsExtraWindowDiv">
+    <div id="ModsExtraWindow">
+        <div id="ModsExtraWindowExitButton" onclick="$('#ModsExtraWindow').fadeOut(500); setTimeout(function(){ $('#ModsExtraWindowDiv').fadeOut(200) }, 100);">╳</div>
+        <span id="ModsExtraWindowInfoName"></span><br> <!-- Await Reaction Call Action -->
+        <span id="ModsExtraWindowInfoAuthor">by:</span> <!-- by: MrGold -->
+        <br><br><br>
+        <span id="ModsExtraWindowInfoSection">Section:</span><br> <!-- Section: -->
+        <span id="ModsExtraWindowInfoTrueSection"></span> <!-- Messaging -->
+        <br><br>
+        <span id="ModsExtraWindowInfoDescription">Description:</span><br> <!-- Description: -->
+        <span id="ModsExtraWindowInfoTrueDescription"></span> <!-- Awaits Reaction -->
+        <span id="ModsExtraWindowInfoVersion">v1.0.0</span> <!-- v1.9.4 -->
+    </div>
+</div>
+<!------------------------------------------------------------>
 <div class="ConsoleDiv">
     <div class="ConsoleDivTab">
         <span class="ConsoleDivTabTitle">
             Console
         </span>
-        <button class="ConsoleDivTabButtonShow Dbutton" onclick="$('#ModsConsoleLog').slideToggle(); $(this).html($(this).html() == 'Show' ? 'Hide' : 'Show')">Show</button>
-        <button class="ConsoleDivTabButtonClear Dbutton" onclick="$('#ModsConsoleLog').html('')">Clear</button>
+        <button class="ConsoleDivTabButtonShow Dbutton" onclick="$('#ModsConsoleLog').slideToggle(); $(this).html($(this).html() == 'Show' ? 'Hide' : 'Show'); $('#ModsConsoleLogNumber').html('')">Show</button>
+        <button class="ConsoleDivTabButtonClear Dbutton" onclick="$('#ModsConsoleLog').html(''); $('#ModsConsoleLogNumber').html('')">Clear</button>
+        <span id="ModsConsoleLogNumber"></span>
     </div>
     <textarea class="ConsoleLogText" id="ModsConsoleLog" readonly></textarea>
 </div><br><br>
@@ -25,7 +41,28 @@
 </div>
 <hr class="HRFirst">
 <br>
-<div class="StuffBelowScroll">
+<!--<div class="StuffBelowScroll">-->
+    <div>
+        <div id="ModsInstallationLocDivText">
+            <b>
+                <span id="ModsInstallationLocTextFirst">
+                    Installation Location
+                </span>
+            </b>
+            <br>
+            <span id="ModsInstallationLocTextSecond">Select where you want to manage the DBM Mods</span>
+        </div>
+        <div id="ModsInstallationLocDivSelect">
+            <select class="Dbutton" id="ModsInstallationLocSelect" onchange="ModsInstallationLocChange(this)">
+                <option value="1" selected>DBM Folder</option>
+                <option value="2">Bot Folder</option>
+            </select>
+            <button id="ModsInstallationLocButtonOpenFolder" class="Dbutton" onclick='ModsOpenActionsFolder($("#ModsInstallationLocSelect").val())'>Open Actions Folder</button>
+        </div>
+    </div>
+    <br><br>
+    <hr class="HRSecond">
+    <br>
     <div id="ModsAltModsDiv">
         <div id="ModsAltModsDivSwitch">
             <label class="switch">
@@ -43,6 +80,11 @@
             <span id="ModsAltModsTextSecond">When it's enabled, Additional Mods, which aren’t used frequently, will be installed too</span>
         </div>
     </div>
-</div>
+    <br>
+    <hr class="HRSecond">
+    <br>
+    <div class="StuffBelowScroll" id="ModsListMods" style="height: 141px;">
+    </div>
+<!--</div>-->
 
 <script src="../mods/mods.js"></script>

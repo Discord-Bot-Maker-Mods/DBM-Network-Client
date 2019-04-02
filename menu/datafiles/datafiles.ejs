@@ -1,0 +1,41 @@
+<div id="DataFilesExtraWindowDiv">
+    <div id="DataFilesExtraWindow">
+        <div id="DataFilesExtraWindowExitButton" onclick="$('#DataFilesExtraWindow').fadeOut(500); setTimeout(function(){ $('#DataFilesExtraWindowDiv').fadeOut(200) }, 100);">╳</div>
+        <span id="DataFilesExtraWindowInfoName"></span><br> <!-- Ban --> <!-- Auto Role -->
+        <span id="DataFilesExtraWindowInfoType"></span> <!-- Command --> <!-- Event -->
+        <br><br><br>
+        <span id="DataFilesExtraWindowInfo1"></span><br> <!-- Command Type: -->
+        <span id="DataFilesExtraWindowInfoTrue1"></span> <!-- Normal Command -->
+        <br><br>
+        <span id="DataFilesExtraWindowInfo2"></span><br> <!-- Command Restriction: -->
+        <span id="DataFilesExtraWindowInfoTrue2"></span> <!-- Server Only -->
+        <br><br>
+        <span id="DataFilesExtraWindowInfo3"></span><br> <!-- User Required Permission: -->
+        <span id="DataFilesExtraWindowInfoTrue3"></span> <!-- None -->
+        <br><br>
+        <span id="DataFilesExtraWindowInfo4"></span><br> <!-- Actions Number: -->
+        <span id="DataFilesExtraWindowInfoTrue4"></span> <!-- 23 -->
+    </div>
+</div>
+<!------------------------------------------------------------>
+<div id="DataFilesDivTab">
+    <p id="DataFilesDivTabTitle">
+        <b>Data Files</b>
+    </p>
+    <select class="Dbutton" id="DataFilesTypeSelect" onchange="DataFilesChangeType()">
+        <option value="commands" selected>Commands</option>
+        <option value="events">Events</option>
+    </select>
+</div>
+<hr class="HRFirst">
+<br>
+<button class="Dbutton" id="DataFilesDivTabButtonCommands" onclick="clipboard.writeText(JSON.stringify(JSON.parse(fse.readFileSync(path.join(obj.Bot_Path, 'data', 'commands.json'), 'utf8')), undefined, 2))">
+    Copy All
+</button>
+<button class="Dbutton" id="DataFilesDivTabButtonCommands" onclick="DataFilesRefreshClick($('#DataFilesTypeSelect').val() == 'commands' ? JSON.parse(fse.readFileSync(path.join(obj.Bot_Path, 'data', 'commands.json'), 'utf8')) : JSON.parse(fse.readFileSync(path.join(obj.Bot_Path, 'data', 'events.json'), 'utf8')))">
+    Refresh
+</button>
+<div class="StuffBelowScroll" id="DataFilesCommandsList" style="margin-top: 80; height: 361px;">
+</div>
+
+<script src="../datafiles/datafiles.js"></script>
